@@ -12,7 +12,7 @@
         {
             string? goal = value as string;
 
-            var resources = ResourceProvider ?? new DefaultResourceProvider();
+            var resources = this.ResourceProvider ?? new DefaultResourceProvider();
 
             return goal switch
             {
