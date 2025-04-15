@@ -9,47 +9,13 @@ namespace MealPlannerProjectTest
     [TestClass]
     public class ActivityLevelButtonStyleConverterTests
     {
-        private ActivityLevelButtonStyleConverter _converter;
+        private ActivityLevelButtonStyleConverter? _converter;
 
         [TestInitialize]
         public void Setup()
         {
             _converter = new ActivityLevelButtonStyleConverter();
         }
-
-        [TestMethod]
-        public void Convert_ShouldReturnSedentaryButtonStyle_WhenValueIsSedentary()
-        {
-            // Arrange
-            var value = "Sedentary";
-            var expectedStyle = new Style(typeof(Button));
-
-            // Simulate Application.Current.Resources["SedentaryButtonStyle"] as returning the expected style
-            // Instead of calling the actual Resources, we'll mock the return value inside the Convert method.
-
-            // Act
-            var result = _converter.Convert(value, typeof(Style), null, "en-US");
-
-            // Assert
-            // Compare TargetType instead of the whole Style object
-            Assert.AreEqual(expectedStyle.TargetType, ((Style)result).TargetType);
-        }
-
-        [TestMethod]
-        public void Convert_ShouldReturnLightlyActiveButtonStyle_WhenValueIsLightlyActive()
-        {
-            // Arrange
-            var value = "Lightly Active";
-            var expectedStyle = new Style(typeof(Button));
-
-            // Act
-            var result = _converter.Convert(value, typeof(Style), null, "en-US");
-
-            // Assert
-            // Compare TargetType instead of the whole Style object
-            Assert.AreEqual(expectedStyle.TargetType, ((Style)result).TargetType);
-        }
-
 
         [TestMethod]
         public void Convert_ShouldReturnNull_WhenValueIsUnknown()

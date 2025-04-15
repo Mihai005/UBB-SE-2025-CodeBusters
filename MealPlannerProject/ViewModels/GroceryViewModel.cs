@@ -10,12 +10,14 @@
 
     public class GroceryViewModel : ObservableObject
     {
-        private static int _userId;
+        private static int userId;
+
         public static int UserId
         {
-            get => _userId;
-            set => _userId =  value;
+            get => userId;
+            set => userId = value;
         }
+
         private readonly GroceryListService service = new ();
 
         public ObservableCollection<GroceryIngredient> Ingredients { get; private set; } = new ();
@@ -68,20 +70,24 @@
         }
 
         [System.Obsolete]
-        public async void AddGroceryIngredient(GroceryIngredient? ingredient = null)
+        public void AddGroceryIngredient(GroceryIngredient? ingredient = null)
         {
-            GroceryIngredient resultIngredient = this.service.AddIngredientToUser(_userId, ingredient ?? GroceryIngredient.defaultIngredient, newGroceryIngredientName, sections);
+            GroceryIngredient resultIngredient = this.service.AddIngredientToUser(userId, ingredient ?? GroceryIngredient.defaultIngredient, this.newGroceryIngredientName, this.sections);
             if (resultIngredient == GroceryIngredient.defaultIngredient)
+            {
                 return;
+            }
             else
+            {
                 ingredient = resultIngredient;
+            }
 
             ingredient.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == nameof(GroceryIngredient.IsChecked))
                 {
                     var ing = (GroceryIngredient)s;
-                    this.service.UpdateIsChecked(_userId, ing.Id, ing.IsChecked);
+                    this.service.UpdateIsChecked(userId, ing.Id, ing.IsChecked);
                 }
             };
 
@@ -93,7 +99,7 @@
 
         private void LoadUserGroceryList()
         {
-            var ingredientsFromDb = this.service.GetIngredientsForUser(_userId);
+            var ingredientsFromDb = this.service.GetIngredientsForUser(userId);
 
             this.Sections = new ObservableCollection<SectionModel>
             {

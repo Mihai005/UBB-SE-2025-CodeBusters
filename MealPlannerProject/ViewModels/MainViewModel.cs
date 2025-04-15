@@ -14,108 +14,80 @@ namespace MealPlannerProject.ViewModels
     {
         // Generic method to update properties
         private string circleText;
-        private string baseGoalCal;
-        private string foodCal;
-        private string exerciseCal;
-        private string waterPercent;
+        private string baseGoalCalories;
+        private string foodCalories;
+        private string exerciseCalories;
+        private string waterPercentage;
         private string waterGoal;
 
-        private string totalPr;
-        private string goalPr;
-        private string leftPr;
+        private string totalProtein;
+        private string goalProtein;
+        private string remainingProtein;
 
-        private string totalCarb;
-        private string goalCarb;
-        private string leftCarb;
+        private string totalCarbohydrates;
+        private string goalCarbohydrates;
+        private string remainingCarbohydrates;
 
-        private string totalFib;
-        private string goalFib;
-        private string leftFib;
+        private string totalFiber;
+        private string goalFiber;
+        private string remainingFiber;
 
         private string totalFat;
         private string goalFat;
-        private string leftFat;
+        private string remainingFat;
 
-        private string totalSug;
-        private string goalSug;
-        private string leftSug;
+        private string totalSugar;
+        private string goalSugar;
+        private string remainingSugar;
 
-        public string CircleText
-        {
-            get => this.circleText;
-            set => this.SetProperty(ref this.circleText, value);
-        }
+        public string CircleText { get => this.circleText; set => this.SetProperty(ref this.circleText, value); }
 
-        public string BaseGoal_Cal
-        {
-            get => this.baseGoalCal;
-            set => this.SetProperty(ref this.baseGoalCal, value);
-        }
+        public string BaseGoal_Calories { get => this.baseGoalCalories; set => this.SetProperty(ref this.baseGoalCalories, value); }
 
-        public string Food_Cal
-        {
-            get => this.foodCal;
-            set => this.SetProperty(ref this.foodCal, value);
-        }
+        public string Food_Calories { get => this.foodCalories; set => this.SetProperty(ref this.foodCalories, value); }
 
-        public string Exercise_Cal
-        {
-            get => this.exerciseCal;
-            set => this.SetProperty(ref this.exerciseCal, value);
-        }
+        public string Exercise_Calories { get => this.exerciseCalories; set => this.SetProperty(ref this.exerciseCalories, value); }
 
-        public string TotalPr
-        {
-            get => this.totalPr;
-            set => this.SetProperty(ref this.totalPr, value);
-        }
+        public string Total_Protein { get => this.totalProtein; set => this.SetProperty(ref this.totalProtein, value); }
 
-        public string GoalPr
-        {
-            get => this.goalPr;
-            set => this.SetProperty(ref this.goalPr, value);
-        }
+        public string Goal_Protein { get => this.goalProtein; set => this.SetProperty(ref this.goalProtein, value); }
 
-        public string LeftPr
-        {
-            get => this.leftPr;
-            set => this.SetProperty(ref this.leftPr, value);
-        }
+        public string Remaining_Protein { get => this.remainingProtein; set => this.SetProperty(ref this.remainingProtein, value); }
 
-        public string TotalCarb { get => this.totalCarb; set => this.SetProperty(ref this.totalCarb, value); }
+        public string Total_Carbohydrates { get => this.totalCarbohydrates; set => this.SetProperty(ref this.totalCarbohydrates, value); }
 
-        public string GoalCarb { get => this.goalCarb; set => this.SetProperty(ref this.goalCarb, value); }
+        public string Goal_Carbohydrates { get => this.goalCarbohydrates; set => this.SetProperty(ref this.goalCarbohydrates, value); }
 
-        public string LeftCarb { get => this.leftCarb; set => this.SetProperty(ref this.leftCarb, value); }
+        public string Remaining_Carbohydrates { get => this.remainingCarbohydrates; set => this.SetProperty(ref this.remainingCarbohydrates, value); }
 
-        public string TotalFib { get => this.totalFib; set => this.SetProperty(ref this.totalFib, value); }
+        public string Total_Fiber { get => this.totalFiber; set => this.SetProperty(ref this.totalFiber, value); }
 
-        public string GoalFib { get => this.goalFib; set => this.SetProperty(ref this.goalFib, value); }
+        public string Goal_Fiber { get => this.goalFiber; set => this.SetProperty(ref this.goalFiber, value); }
 
-        public string LeftFib { get => this.leftFib; set => this.SetProperty(ref this.leftFib, value); }
+        public string Remaining_Fiber { get => this.remainingFiber; set => this.SetProperty(ref this.remainingFiber, value); }
 
-        public string TotalFat { get => this.totalFat; set => this.SetProperty(ref this.totalFat, value); }
+        public string Total_Fat { get => this.totalFat; set => this.SetProperty(ref this.totalFat, value); }
 
-        public string GoalFat { get => this.goalFat; set => this.SetProperty(ref this.goalFat, value); }
+        public string Goal_Fat { get => this.goalFat; set => this.SetProperty(ref this.goalFat, value); }
 
-        public string LeftFat { get => this.leftFat; set => this.SetProperty(ref this.leftFat, value); }
+        public string Remaining_Fat { get => this.remainingFat; set => this.SetProperty(ref this.remainingFat, value); }
 
-        public string TotalSug { get => this.totalSug; set => this.SetProperty(ref this.totalSug, value); }
+        public string Total_Sugar { get => this.totalSugar; set => this.SetProperty(ref this.totalSugar, value); }
 
-        public string GoalSug { get => this.goalSug; set => this.SetProperty(ref this.goalSug, value); }
+        public string Goal_Sugar { get => this.goalSugar; set => this.SetProperty(ref this.goalSugar, value); }
 
-        public string LeftSug { get => this.leftSug; set => this.SetProperty(ref this.leftSug, value); }
+        public string Remaining_Sugar { get => this.remainingSugar; set => this.SetProperty(ref this.remainingSugar, value); }
 
-        public string WaterPercent { get => this.waterPercent; set => this.SetProperty(ref this.waterPercent, value); }
+        public string Water_Percentage { get => this.waterPercentage; set => this.SetProperty(ref this.waterPercentage, value); }
 
-        public string WaterGoal { get => this.waterGoal; set => this.SetProperty(ref this.waterGoal, value); }
+        public string Water_Goal { get => this.waterGoal; set => this.SetProperty(ref this.waterGoal, value); }
 
         // Define properties for R1 to R6
         private string[] rValues = new string[36];
 
         public string R1 { get => this.rValues[0]; set => this.SetProperty(ref this.rValues[0], value); }
 
-        public string R1Cal { get => this.rValues[1]; set => this.SetProperty(ref this.rValues[1], value); }
+        public string R1Calories { get => this.rValues[1]; set => this.SetProperty(ref this.rValues[1], value); }
 
         public string R1Diet { get => this.rValues[2]; set => this.SetProperty(ref this.rValues[2], value); }
 
@@ -127,7 +99,7 @@ namespace MealPlannerProject.ViewModels
 
         public string R2 { get => this.rValues[6]; set => this.SetProperty(ref this.rValues[6], value); }
 
-        public string R2Cal { get => this.rValues[7]; set => this.SetProperty(ref this.rValues[7], value); }
+        public string R2Calories { get => this.rValues[7]; set => this.SetProperty(ref this.rValues[7], value); }
 
         public string R2Diet { get => this.rValues[8]; set => this.SetProperty(ref this.rValues[8], value); }
 
@@ -139,7 +111,7 @@ namespace MealPlannerProject.ViewModels
 
         public string R3 { get => this.rValues[12]; set => this.SetProperty(ref this.rValues[12], value); }
 
-        public string R3Cal { get => this.rValues[13]; set => this.SetProperty(ref this.rValues[13], value); }
+        public string R3Calories { get => this.rValues[13]; set => this.SetProperty(ref this.rValues[13], value); }
 
         public string R3Diet { get => this.rValues[14]; set => this.SetProperty(ref this.rValues[14], value); }
 
@@ -151,7 +123,7 @@ namespace MealPlannerProject.ViewModels
 
         public string R4 { get => this.rValues[18]; set => this.SetProperty(ref this.rValues[18], value); }
 
-        public string R4Cal { get => this.rValues[19]; set => this.SetProperty(ref this.rValues[19], value); }
+        public string R4Calories { get => this.rValues[19]; set => this.SetProperty(ref this.rValues[19], value); }
 
         public string R4Diet { get => this.rValues[20]; set => this.SetProperty(ref this.rValues[20], value); }
 
@@ -163,7 +135,7 @@ namespace MealPlannerProject.ViewModels
 
         public string R5 { get => this.rValues[24]; set => this.SetProperty(ref this.rValues[24], value); }
 
-        public string R5Cal { get => this.rValues[25]; set => this.SetProperty(ref this.rValues[25], value); }
+        public string R5Calories { get => this.rValues[25]; set => this.SetProperty(ref this.rValues[25], value); }
 
         public string R5Diet { get => this.rValues[26]; set => this.SetProperty(ref this.rValues[26], value); }
 
@@ -176,7 +148,7 @@ namespace MealPlannerProject.ViewModels
 
         public string R6 { get => this.rValues[30]; set => this.SetProperty(ref this.rValues[30], value); }
 
-        public string R6Cal { get => this.rValues[31]; set => this.SetProperty(ref this.rValues[31], value); }
+        public string R6Calories { get => this.rValues[31]; set => this.SetProperty(ref this.rValues[31], value); }
 
         public string R6Diet { get => this.rValues[32]; set => this.SetProperty(ref this.rValues[32], value); }
 
@@ -277,15 +249,12 @@ namespace MealPlannerProject.ViewModels
         private readonly IWaterIntakeService waterService;
         private readonly CalorieService calorieService;
         private readonly MacrosService macrosService;
-        private static int _userId;
-        public static int UserId
-        {
-            get => _userId;
-            set => _userId = value;
-        }
+
+        public static int UserId { get; set; }
 
         public ICommand RefreshMealsCommand { get; }
 
+        [Obsolete]
         public MainViewModel()
         {
 
@@ -323,36 +292,36 @@ namespace MealPlannerProject.ViewModels
 
             System.Diagnostics.Debug.WriteLine("Getting food calories...");
             // Initialize calorie values from database
-            this.Food_Cal = this.calorieService.GetFood(number_userId).ToString();
+            this.Food_Calories = this.calorieService.GetFood(number_userId).ToString();
 
-            this.BaseGoal_Cal = "2000";
-            this.Exercise_Cal = "500";
+            this.BaseGoal_Calories = "2000";
+            this.Exercise_Calories = "500";
 
-            float circleTextNr = float.Parse(this.BaseGoal_Cal) - float.Parse(this.Food_Cal) + float.Parse(this.Exercise_Cal);
+            float circleTextNr = float.Parse(this.BaseGoal_Calories) - float.Parse(this.Food_Calories) + float.Parse(this.Exercise_Calories);
             this.CircleText = circleTextNr.ToString();
 
             System.Diagnostics.Debug.WriteLine("Getting macros...");
             // Initialize macros values from database
-            this.TotalPr = this.macrosService.GetProteinIntake(number_userId).ToString();
-            this.TotalCarb = this.macrosService.GetCarbohydratesIntake(number_userId).ToString();
-            this.TotalFat = this.macrosService.GetFatIntake(number_userId).ToString();
-            this.TotalFib = this.macrosService.GetFiberIntake(number_userId).ToString();
-            this.TotalSug = this.macrosService.GetSugarIntake(number_userId).ToString();
+            this.Total_Protein = this.macrosService.GetProteinIntake(number_userId).ToString();
+            this.Total_Carbohydrates = this.macrosService.GetCarbohydratesIntake(number_userId).ToString();
+            this.Total_Fat = this.macrosService.GetFatIntake(number_userId).ToString();
+            this.Total_Fiber = this.macrosService.GetFiberIntake(number_userId).ToString();
+            this.Total_Sugar = this.macrosService.GetSugarIntake(number_userId).ToString();
 
             // Initialize values
-            this.GoalPr = "30";
-            this.GoalCarb = "200";
-            this.GoalFib = "30";
-            this.GoalFat = "90";
-            this.GoalSug = "50";
+            this.Goal_Protein = "30";
+            this.Goal_Carbohydrates = "200";
+            this.Goal_Fiber = "30";
+            this.Goal_Fat = "90";
+            this.Goal_Sugar = "50";
 
-            this.LeftPr = (float.Parse(this.GoalPr) - float.Parse(this.TotalPr)).ToString();
-            this.LeftCarb = (float.Parse(this.GoalCarb) - float.Parse(this.TotalCarb)).ToString();
-            this.LeftFib = (float.Parse(this.GoalFib) - float.Parse(this.TotalFib)).ToString();
-            this.LeftFat = (float.Parse(this.GoalFat) - float.Parse(this.TotalFat)).ToString();
-            this.LeftSug = (float.Parse(this.GoalSug) - float.Parse(this.TotalSug)).ToString();
+            this.Remaining_Protein = (float.Parse(this.Goal_Protein) - float.Parse(this.Total_Protein)).ToString();
+            this.Remaining_Carbohydrates = (float.Parse(this.Goal_Carbohydrates) - float.Parse(this.Total_Carbohydrates)).ToString();
+            this.Remaining_Fiber = (float.Parse(this.Goal_Fiber) - float.Parse(this.Total_Fiber)).ToString();
+            this.Remaining_Fat = (float.Parse(this.Goal_Fat) - float.Parse(this.Total_Fat)).ToString();
+            this.Remaining_Sugar = (float.Parse(this.Goal_Sugar) - float.Parse(this.Total_Sugar)).ToString();
 
-            this.WaterGoal = "2000";
+            this.Water_Goal = "2000";
 
             this.DisplayMeals = new RelayCommand(this.GoDisplayMeals);
 
@@ -384,7 +353,7 @@ namespace MealPlannerProject.ViewModels
                 // Initialize all slots with default values first
                 string defaultRecipe = "No meals", defaultCal = "0", defaultDiet = "N/A", defaultLevel = "N/A", defaultTime = "N/A", defaultMealType = "N/A";
                 this.R1 = this.R2 = this.R3 = this.R4 = this.R5 = this.R6 = defaultRecipe;
-                this.R1Cal = this.R2Cal = this.R3Cal = this.R4Cal = this.R5Cal = this.R6Cal = defaultCal;
+                this.R1Calories = this.R2Calories = this.R3Calories = this.R4Calories = this.R5Calories = this.R6Calories = defaultCal;
                 this.R1Diet = this.R2Diet = this.R3Diet = this.R4Diet = this.R5Diet = this.R6Diet = defaultDiet;
                 this.R1Level = this.R2Level = this.R3Level = this.R4Level = this.R5Level = this.R6Level = defaultLevel;
                 this.R1Time = this.R2Time = this.R3Time = this.R4Time = this.R5Time = this.R6Time = defaultTime;
@@ -413,12 +382,12 @@ namespace MealPlannerProject.ViewModels
 
                         switch (i)
                         {
-                            case 0: this.R1 = recipeName; this.R1Cal = calories; this.R1Diet = diet; this.R1Level = level; this.R1Time = time; this.R1MealType = mealType; break;
-                            case 1: this.R2 = recipeName; this.R2Cal = calories; this.R2Diet = diet; this.R2Level = level; this.R2Time = time; this.R2MealType = mealType; break;
-                            case 2: this.R3 = recipeName; this.R3Cal = calories; this.R3Diet = diet; this.R3Level = level; this.R3Time = time; this.R3MealType = mealType; break;
-                            case 3: this.R4 = recipeName; this.R4Cal = calories; this.R4Diet = diet; this.R4Level = level; this.R4Time = time; this.R4MealType = mealType; break;
-                            case 4: this.R5 = recipeName; this.R5Cal = calories; this.R5Diet = diet; this.R5Level = level; this.R5Time = time; this.R5MealType = mealType; break;
-                            case 5: this.R6 = recipeName; this.R6Cal = calories; this.R6Diet = diet; this.R6Level = level; this.R6Time = time; this.R6MealType = mealType; break;
+                            case 0: this.R1 = recipeName; this.R1Calories = calories; this.R1Diet = diet; this.R1Level = level; this.R1Time = time; this.R1MealType = mealType; break;
+                            case 1: this.R2 = recipeName; this.R2Calories = calories; this.R2Diet = diet; this.R2Level = level; this.R2Time = time; this.R2MealType = mealType; break;
+                            case 2: this.R3 = recipeName; this.R3Calories = calories; this.R3Diet = diet; this.R3Level = level; this.R3Time = time; this.R3MealType = mealType; break;
+                            case 3: this.R4 = recipeName; this.R4Calories = calories; this.R4Diet = diet; this.R4Level = level; this.R4Time = time; this.R4MealType = mealType; break;
+                            case 4: this.R5 = recipeName; this.R5Calories = calories; this.R5Diet = diet; this.R5Level = level; this.R5Time = time; this.R5MealType = mealType; break;
+                            case 5: this.R6 = recipeName; this.R6Calories = calories; this.R6Diet = diet; this.R6Level = level; this.R6Time = time; this.R6MealType = mealType; break;
                         }
                     }
                     System.Diagnostics.Debug.WriteLine($"Loaded {mealsTable.Rows.Count} meals successfully");
