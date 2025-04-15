@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="#FCE8DC">
+    Background="#FCE8DC"
+>
 
     <Page.DataContext>
         <vm:WelcomeViewModel/>
@@ -21,39 +22,44 @@
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
             <TextBlock Text="Welcome"
-                       FontSize="48"
-                       FontWeight="Bold"
-                       Foreground="#1E1E1E"
-                       TextAlignment="Center"
-                       Margin="0,0,0,10"/>
+                FontSize="48"
+                FontWeight="Bold"
+                Foreground="#1E1E1E"
+                TextAlignment="Center"
+                Margin="0,0,0,10"
+            />
             <TextBlock Text="Meals Made for Your Goals."
-                       FontSize="24"
-                       Foreground="#4A4A4A"
-                       TextAlignment="Center"
-                       Margin="0,0,0,20"/>
+                FontSize="24"
+                Foreground="#4A4A4A"
+                TextAlignment="Center"
+                Margin="0,0,0,20"
+            />
             <Button Content="Get started"
-                    FontSize="16"
-                    Padding="10,5"
-                    Command="{Binding GetStartedCommand}"
-                    Background="#E67C59"
-                    Foreground="White"
-                    CornerRadius="11"
-                    HorizontalAlignment="Center"/>
+                FontSize="16"
+                Padding="10,5"
+                Command="{Binding GetStartedCommand}"
+                Background="#E67C59"
+                Foreground="White"
+                CornerRadius="11"
+                HorizontalAlignment="Center"
+            />
         </StackPanel>
 
         <Image Source="ms-appx:///Assets/left-image.png"
-       HorizontalAlignment="Left"
-       VerticalAlignment="Bottom"
-       Width="500"
-       Height="330"
-       Margin="20,0,0,20"/>
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Width="500"
+            Height="330"
+            Margin="20,0,0,20"
+        />
 
         <Image Source="ms-appx:///Assets/right-image.png"
-       HorizontalAlignment="Right"
-       VerticalAlignment="Bottom"
-       Width="500"
-       Height="330"
-       Margin="0,0,20,20"/>
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Width="500"
+            Height="330"
+            Margin="0,0,20,20"
+        />
 
     </Grid>
 </Page>
