@@ -14,17 +14,19 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Diagnostics;
 using MealPlannerProject.ViewModels;
+using MealPlannerProject.Interfaces.Services;
 
 namespace MealPlannerProject.Pages
 {
     public sealed partial class DietaryPreferencesPage : Page
     {
 
-        DietaryPreferencesViewModel dietaryPreferencesViewModel = new DietaryPreferencesViewModel();
+        private readonly DietaryPreferencesViewModel dietaryPreferencesViewModel;
 
-        public DietaryPreferencesPage()
+        public DietaryPreferencesPage(IDietaryPreferencesService dietaryPreferencesService, INavigationService navigationService)
         {
             this.InitializeComponent();
+            dietaryPreferencesViewModel = new DietaryPreferencesViewModel(dietaryPreferencesService, navigationService);
             this.DataContext = dietaryPreferencesViewModel;
         }
 
