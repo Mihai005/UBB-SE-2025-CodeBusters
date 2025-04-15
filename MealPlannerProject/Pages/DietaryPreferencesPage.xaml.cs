@@ -14,27 +14,33 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Diagnostics;
 using MealPlannerProject.ViewModels;
+using MealPlannerProject.Interfaces.Services;
 
 namespace MealPlannerProject.Pages
 {
     public sealed partial class DietaryPreferencesPage : Page
     {
 
-        DietaryPreferencesViewModel dietaryPreferencesViewModel = new DietaryPreferencesViewModel();
+        private readonly DietaryPreferencesViewModel dietaryPreferencesViewModel;
 
-        public DietaryPreferencesPage()
+        public DietaryPreferencesPage(IDietaryPreferencesService dietaryPreferencesService, INavigationService navigationService)
         {
+            if (dietaryPreferencesService is null) throw new ArgumentNullException(nameof(dietaryPreferencesService));
+            if (navigationService is null) throw new ArgumentNullException(nameof(navigationService));
+
             this.InitializeComponent();
+            dietaryPreferencesViewModel = new DietaryPreferencesViewModel(dietaryPreferencesService, navigationService);
             this.DataContext = dietaryPreferencesViewModel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
             if (e.Parameter is CookingLevelViewModel cookingLevelViewModel)
             {
                 Debug.WriteLine($"Dietary Preferences page received user: {cookingLevelViewModel.FirstName} {cookingLevelViewModel.LastName}");
-                ((DietaryPreferencesViewModel)this.DataContext).SetUserInfo(cookingLevelViewModel.FirstName, cookingLevelViewModel.LastName);
+                dietaryPreferencesViewModel.SetUserInfo(cookingLevelViewModel.FirstName, cookingLevelViewModel.LastName);
             }
         }
 

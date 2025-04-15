@@ -53,7 +53,6 @@ namespace MealPlannerProject.Pages
                 _ = dialog.ShowAsync();
                 return;
             }
-
             int userId = this.userPageService.userHasAnAccount(this.LastName + " " + this.FirstName);
             if (userId != -1)
             {
