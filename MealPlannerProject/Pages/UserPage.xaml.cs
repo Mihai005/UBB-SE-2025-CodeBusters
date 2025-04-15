@@ -58,6 +58,7 @@ namespace MealPlannerProject.Pages
             {
                 GroceryViewModel.UserId = userId;
                 AddFoodPageViewModel.UserId = userId;
+                MainViewModel.UserId = userId;
                 this.Frame.Navigate(typeof(MainPage));
             }
             else
@@ -65,6 +66,7 @@ namespace MealPlannerProject.Pages
                 userId = userPageService.insertNewUser(LastName + " " + FirstName);
                 GroceryViewModel.UserId = userId;
                 AddFoodPageViewModel.UserId = userId;
+                MainViewModel.UserId = userId;
                 this.Frame.Navigate(typeof(BodyMetricsPage), this);
             }
         }

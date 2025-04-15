@@ -11,7 +11,7 @@
     public sealed partial class DataLink : IDisposable, IDataLink
     {
         [Obsolete]
-        private static readonly Lazy<DataLink> InstanceValue = new (() => new DataLink());
+        private static readonly Lazy<DataLink> InstanceValue = new(() => new DataLink());
         private readonly string connectionString;
         [Obsolete]
         private SqlConnection? sqlConnection;

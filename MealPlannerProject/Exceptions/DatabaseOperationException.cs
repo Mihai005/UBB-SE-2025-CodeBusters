@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MealPlannerProject.Exceptions
+﻿namespace MealPlannerProject.Exceptions
 {
-    class DatabaseOperationException : Exception
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class DatabaseOperationException : Exception
     {
         public DatabaseOperationException() { }
 

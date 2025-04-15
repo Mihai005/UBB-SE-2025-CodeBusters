@@ -274,20 +274,26 @@ namespace MealPlannerProject.ViewModels
 
         // ----------------------------------------
 
-        private readonly IWaterService waterService;
+        private readonly IWaterIntakeService waterService;
         private readonly CalorieService calorieService;
         private readonly MacrosService macrosService;
-        private string userId = "73"; // Replace with actual logged-in user ID
+        private static int _userId;
+        public static int UserId
+        {
+            get => _userId;
+            set => _userId = value;
+        }
 
         public ICommand RefreshMealsCommand { get; }
 
         public MainViewModel()
         {
 
-            int number_userId = int.Parse(this.userId);
+            int number_userId = UserId;
 
             // Initialize WaterService
-            this.waterService = new WaterService();
+            this.waterService = new WaterIntakeService();
+            this.waterService.AddUserIfNotExists(number_userId); // Ensure user exists in the water tracker table
 
             // Initialize CalorieService
             this.calorieService = new CalorieService();
@@ -489,7 +495,7 @@ namespace MealPlannerProject.ViewModels
                 currentIntake = 0; // Default to zero if parsing fails
             }
 
-            int number_userId = int.Parse(userId);
+            int number_userId = UserId;
             float newIntake = currentIntake + amount;
             this.waterService.UpdateWaterIntake(number_userId, newIntake);
             this.WaterIntake = newIntake.ToString();
@@ -502,7 +508,7 @@ namespace MealPlannerProject.ViewModels
                 currentIntake = 0; // Default to zero if parsing fails
             }
 
-            int number_userId = int.Parse(this.userId);
+            int number_userId = UserId;
             float newIntake = Math.Max(0, currentIntake - amount); // Ensure we don't go below 0
             this.waterService.UpdateWaterIntake(number_userId, newIntake);
             this.WaterIntake = newIntake.ToString();

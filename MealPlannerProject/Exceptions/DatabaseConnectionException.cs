@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class DatabaseConnectionException : Exception
+    public class DatabaseConnectionException : Exception
     {
         public DatabaseConnectionException()
         {

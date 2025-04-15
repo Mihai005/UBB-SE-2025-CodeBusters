@@ -3,20 +3,44 @@
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
+    using System.Diagnostics;
     using System.Linq;
     using System.Runtime.ConstrainedExecution;
     using System.Text;
     using System.Threading.Tasks;
+    using MealPlannerProject.Interfaces;
     using MealPlannerProject.Interfaces.Services;
     using MealPlannerProject.Queries;
 
-    internal class WaterService : IWaterService
+    public class WaterIntakeService : IWaterIntakeService
     {
+        public IDataLink dataLink;
+
+        [Obsolete]
+        public WaterIntakeService()
+        {
+            this.dataLink = DataLink.Instance;
+        }
+
+        public void AddUserIfNotExists(int userId)
+        {
+            // if the current user not in the water_tracker table, add it
+            var parameters = new SqlParameter[] { new SqlParameter("@UserId", userId) };
+            var result = this.dataLink.ExecuteScalar<int>("SELECT COUNT(*) FROM water_trackers WHERE u_id = @UserId", parameters, false);
+            if (result == 0)
+            {
+                // add the user to the water_tracker table
+                var insertParameters = new SqlParameter[] { new SqlParameter("@UserId", userId) };
+                Debug.WriteLine(userId);
+                this.dataLink.ExecuteQuery("INSERT INTO water_trackers (u_id, water_intake, water_goal) VALUES (@UserId, 0, 2000)", insertParameters, false);
+            }
+        }
+
         [Obsolete]
         public float GetWaterIntake(int userId)
         {
             var parameters = new SqlParameter[] { new SqlParameter("@UserId", userId) };
-            return DataLink.Instance.ExecuteScalar<float>("SELECT dbo.get_water_intake(@UserId)", parameters, false);
+            return this.dataLink.ExecuteScalar<float>("SELECT dbo.get_water_intake(@UserId)", parameters, false);
         }
 
         [Obsolete]
@@ -27,7 +51,7 @@
                 new SqlParameter("@UserId", userId),
                 new SqlParameter("@NewIntake", newIntake),
             };
-            DataLink.Instance.ExecuteQuery("exec update_water_intake @UserId, @NewIntake", parameters, false);
+            this.dataLink.ExecuteQuery("exec update_water_intake @UserId, @NewIntake", parameters, false);
         }
 
         [Obsolete]
