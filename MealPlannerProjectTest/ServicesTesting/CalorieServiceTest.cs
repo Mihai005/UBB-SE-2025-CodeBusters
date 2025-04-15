@@ -10,7 +10,7 @@ namespace MealPlannerProjectTest.Services
     [TestClass]
     public class CalorieServiceTests
     {
-        private CalorieService? _calorieService;
+        public CalorieService? _calorieService;
         private DataLinkMock? _dataLinkMock;
 
         [TestInitialize]
