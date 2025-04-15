@@ -53,7 +53,7 @@ namespace MealPlannerProject.Pages
                 _ = dialog.ShowAsync();
                 return;
             }
-            int userId = this.userPageService.userHasAnAccount(this.LastName + " " + this.FirstName);
+            int userId = this.userPageService.UserHasAnAccount(this.LastName + " " + this.FirstName);
             if (userId != -1)
             {
                 GroceryViewModel.UserId = userId;
@@ -63,7 +63,7 @@ namespace MealPlannerProject.Pages
             }
             else
             {
-                userId = userPageService.insertNewUser(this.LastName + " " + this.FirstName);
+                userId = userPageService.InsertNewUser(this.LastName + " " + this.FirstName);
                 GroceryViewModel.UserId = userId;
                 AddFoodPageViewModel.UserId = userId;
                 MainViewModel.UserId = userId;
