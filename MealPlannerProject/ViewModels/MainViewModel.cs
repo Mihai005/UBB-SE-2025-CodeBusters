@@ -14,31 +14,31 @@ namespace MealPlannerProject.ViewModels
     {
         // Generic method to update properties
         private string circleText;
-        private string baseGoalCal;
-        private string foodCal;
-        private string exerciseCal;
-        private string waterPercent;
+        private string baseGoalCalories;
+        private string foodCalories;
+        private string exerciseCalories;
+        private string waterPercentage;
         private string waterGoal;
 
-        private string totalPr;
-        private string goalPr;
-        private string leftPr;
+        private string totalProtein;
+        private string goalProtein;
+        private string remainingProtein;
 
-        private string totalCarb;
-        private string goalCarb;
-        private string leftCarb;
+        private string totalCarbohydrates;
+        private string goalCarbohydrates;
+        private string remainingCarbohydrates;
 
-        private string totalFib;
-        private string goalFib;
-        private string leftFib;
+        private string totalFiber;
+        private string goalFiber;
+        private string remainingFiber;
 
         private string totalFat;
         private string goalFat;
-        private string leftFat;
+        private string remainingFat;
 
-        private string totalSug;
-        private string goalSug;
-        private string leftSug;
+        private string totalSugar;
+        private string goalSugar;
+        private string remainingSugar;
 
         public string CircleText
         {
@@ -48,65 +48,65 @@ namespace MealPlannerProject.ViewModels
 
         public string BaseGoal_Cal
         {
-            get => this.baseGoalCal;
-            set => this.SetProperty(ref this.baseGoalCal, value);
+            get => this.baseGoalCalories;
+            set => this.SetProperty(ref this.baseGoalCalories, value);
         }
 
         public string Food_Cal
         {
-            get => this.foodCal;
-            set => this.SetProperty(ref this.foodCal, value);
+            get => this.foodCalories;
+            set => this.SetProperty(ref this.foodCalories, value);
         }
 
         public string Exercise_Cal
         {
-            get => this.exerciseCal;
-            set => this.SetProperty(ref this.exerciseCal, value);
+            get => this.exerciseCalories;
+            set => this.SetProperty(ref this.exerciseCalories, value);
         }
 
         public string TotalPr
         {
-            get => this.totalPr;
-            set => this.SetProperty(ref this.totalPr, value);
+            get => this.totalProtein;
+            set => this.SetProperty(ref this.totalProtein, value);
         }
 
         public string GoalPr
         {
-            get => this.goalPr;
-            set => this.SetProperty(ref this.goalPr, value);
+            get => this.goalProtein;
+            set => this.SetProperty(ref this.goalProtein, value);
         }
 
         public string LeftPr
         {
-            get => this.leftPr;
-            set => this.SetProperty(ref this.leftPr, value);
+            get => this.remainingProtein;
+            set => this.SetProperty(ref this.remainingProtein, value);
         }
 
-        public string TotalCarb { get => this.totalCarb; set => this.SetProperty(ref this.totalCarb, value); }
+        public string TotalCarb { get => this.totalCarbohydrates; set => this.SetProperty(ref this.totalCarbohydrates, value); }
 
-        public string GoalCarb { get => this.goalCarb; set => this.SetProperty(ref this.goalCarb, value); }
+        public string GoalCarb { get => this.goalCarbohydrates; set => this.SetProperty(ref this.goalCarbohydrates, value); }
 
-        public string LeftCarb { get => this.leftCarb; set => this.SetProperty(ref this.leftCarb, value); }
+        public string LeftCarb { get => this.remainingCarbohydrates; set => this.SetProperty(ref this.remainingCarbohydrates, value); }
 
-        public string TotalFib { get => this.totalFib; set => this.SetProperty(ref this.totalFib, value); }
+        public string TotalFib { get => this.totalFiber; set => this.SetProperty(ref this.totalFiber, value); }
 
-        public string GoalFib { get => this.goalFib; set => this.SetProperty(ref this.goalFib, value); }
+        public string GoalFib { get => this.goalFiber; set => this.SetProperty(ref this.goalFiber, value); }
 
-        public string LeftFib { get => this.leftFib; set => this.SetProperty(ref this.leftFib, value); }
+        public string LeftFib { get => this.remainingFiber; set => this.SetProperty(ref this.remainingFiber, value); }
 
         public string TotalFat { get => this.totalFat; set => this.SetProperty(ref this.totalFat, value); }
 
         public string GoalFat { get => this.goalFat; set => this.SetProperty(ref this.goalFat, value); }
 
-        public string LeftFat { get => this.leftFat; set => this.SetProperty(ref this.leftFat, value); }
+        public string LeftFat { get => this.remainingFat; set => this.SetProperty(ref this.remainingFat, value); }
 
-        public string TotalSug { get => this.totalSug; set => this.SetProperty(ref this.totalSug, value); }
+        public string TotalSug { get => this.totalSugar; set => this.SetProperty(ref this.totalSugar, value); }
 
-        public string GoalSug { get => this.goalSug; set => this.SetProperty(ref this.goalSug, value); }
+        public string GoalSug { get => this.goalSugar; set => this.SetProperty(ref this.goalSugar, value); }
 
-        public string LeftSug { get => this.leftSug; set => this.SetProperty(ref this.leftSug, value); }
+        public string LeftSug { get => this.remainingSugar; set => this.SetProperty(ref this.remainingSugar, value); }
 
-        public string WaterPercent { get => this.waterPercent; set => this.SetProperty(ref this.waterPercent, value); }
+        public string WaterPercent { get => this.waterPercentage; set => this.SetProperty(ref this.waterPercentage, value); }
 
         public string WaterGoal { get => this.waterGoal; set => this.SetProperty(ref this.waterGoal, value); }
 
