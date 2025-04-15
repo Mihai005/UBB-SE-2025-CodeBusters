@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MealPlannerProject.Services;
+using MealPlannerProject.Interfaces;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -24,15 +25,12 @@ namespace MealPlannerProjectTest.Services
         [TestMethod]
         public void GetGoal_ValidUserId_ReturnsCalorieGoal()
         {
-            // Arrange
             const int userId = 1;
             const float expectedGoal = 2000f;
             _dataLinkMock!.SetupExecuteScalarResult(expectedGoal);
 
-            // Act
             float result = _calorieService!.GetGoal(userId);
 
-            // Assert
             Assert.AreEqual(expectedGoal, result);
             Assert.IsTrue(_dataLinkMock.VerifyExecuteScalarCalled());
         }
@@ -40,13 +38,10 @@ namespace MealPlannerProjectTest.Services
         [TestMethod]
         public void GetGoal_NullFromDatabase_ReturnsZero()
         {
-            // Arrange
             _dataLinkMock!.SetupExecuteScalarResult(null);
 
-            // Act
             float result = _calorieService!.GetGoal(1);
 
-            // Assert
             Assert.AreEqual(0f, result);
         }
 
@@ -54,10 +49,8 @@ namespace MealPlannerProjectTest.Services
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetGoal_DatabaseError_ThrowsException()
         {
-            // Arrange
-            _dataLinkMock!.SetupExecuteScalarException(new SqlException());
+            _dataLinkMock!.SetupExecuteScalarException(new InvalidOperationException("Simulated database error"));
 
-            // Act
             _calorieService!.GetGoal(1);
         }
 
@@ -68,14 +61,11 @@ namespace MealPlannerProjectTest.Services
         [TestMethod]
         public void GetFood_ValidUserId_ReturnsCaloriesFromFood()
         {
-            // Arrange
             const float expectedCalories = 1500f;
             _dataLinkMock!.SetupExecuteScalarResult(expectedCalories);
 
-            // Act
             float result = _calorieService!.GetFood(1);
 
-            // Assert
             Assert.AreEqual(expectedCalories, result);
         }
 
@@ -83,10 +73,8 @@ namespace MealPlannerProjectTest.Services
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetFood_DatabaseError_ThrowsException()
         {
-            // Arrange
-            _dataLinkMock!.SetupExecuteScalarException(new SqlException());
+            _dataLinkMock!.SetupExecuteScalarException(new InvalidOperationException("Simulated database error"));
 
-            // Act
             _calorieService!.GetFood(1);
         }
 
@@ -97,14 +85,11 @@ namespace MealPlannerProjectTest.Services
         [TestMethod]
         public void GetExercise_ValidUserId_ReturnsCaloriesBurned()
         {
-            // Arrange
             const float expectedBurn = 500f;
             _dataLinkMock!.SetupExecuteScalarResult(expectedBurn);
 
-            // Act
             float result = _calorieService!.GetExercise(1);
 
-            // Assert
             Assert.AreEqual(expectedBurn, result);
         }
 
@@ -112,10 +97,8 @@ namespace MealPlannerProjectTest.Services
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetExercise_DatabaseError_ThrowsException()
         {
-            // Arrange
-            _dataLinkMock!.SetupExecuteScalarException(new SqlException());
+            _dataLinkMock!.SetupExecuteScalarException(new InvalidOperationException("Simulated database error"));
 
-            // Act
             _calorieService!.GetExercise(1);
         }
 
@@ -144,7 +127,7 @@ namespace MealPlannerProjectTest.Services
 
             public bool VerifyExecuteScalarCalled() => _executeScalarCalled;
 
-            public T? ExecuteScalar<T>(string query, SqlParameter[]? sqlParameters, bool isStoredProcedure)
+            public T? ExecuteScalar<T>(string query, System.Data.SqlClient.SqlParameter[]? sqlParameters, bool isStoredProcedure)
             {
                 _executeScalarCalled = true;
 
@@ -157,17 +140,17 @@ namespace MealPlannerProjectTest.Services
                 return (T)_executeScalarResult;
             }
 
-            public int ExecuteNonQuery(string storedProcedure, SqlParameter[]? sqlParameters)
+            public int ExecuteNonQuery(string storedProcedure, System.Data.SqlClient.SqlParameter[]? sqlParameters)
             {
                 throw new NotImplementedException();
             }
 
-            public int ExecuteQuery(string query, SqlParameter[]? sqlParameters, bool isStoredProcedure)
+            public int ExecuteQuery(string query, System.Data.SqlClient.SqlParameter[]? sqlParameters, bool isStoredProcedure)
             {
                 throw new NotImplementedException();
             }
 
-            public DataTable ExecuteSqlQuery(string query, SqlParameter[]? sqlParameters)
+            public DataTable ExecuteSqlQuery(string query, System.Data.SqlClient.SqlParameter[]? sqlParameters)
             {
                 throw new NotImplementedException();
             }
