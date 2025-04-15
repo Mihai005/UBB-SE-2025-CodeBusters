@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace MealPlannerProject.ViewModels
+﻿namespace MealPlannerProject.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
+
     public class RelayCommand : ICommand
     {
-        private readonly Action _execute;
-        private readonly Func<bool> _canExecute;
+        private readonly Action execute;
+        private readonly Func<bool> canExecute;
 
-        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        public RelayCommand(Action eexecute, Func<bool> ccanExecute = null!)
         {
-            _execute = execute;
-            _canExecute = canExecute;
+            this.execute = eexecute ?? throw new ArgumentNullException(nameof(eexecute));
+            this.canExecute = ccanExecute;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
-        public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
+        public bool CanExecute(object? parameter) => this.canExecute == null || this.canExecute();
 
-        public void Execute(object parameter) => _execute();
+        public void Execute(object? parameter) => this.execute();
 
-        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }
