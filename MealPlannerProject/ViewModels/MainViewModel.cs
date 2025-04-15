@@ -496,7 +496,6 @@ namespace MealPlannerProject.ViewModels
             }
 
             int number_userId = UserId;
-
             float newIntake = currentIntake + amount;
             this.waterService.UpdateWaterIntake(number_userId, newIntake);
             this.WaterIntake = newIntake.ToString();

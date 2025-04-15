@@ -1,15 +1,16 @@
-﻿using System.Data.SqlClient;
-using System.Diagnostics;
-using MealPlannerProject.Exceptions;
-using MealPlannerProject.Queries;
-using MealPlannerProject.Interfaces;
-
-namespace MealPlannerProject.Services
+﻿namespace MealPlannerProject.Services
 {
+    using System.Data.SqlClient;
+    using System.Diagnostics;
+    using MealPlannerProject.Exceptions;
+    using MealPlannerProject.Interfaces;
+    using MealPlannerProject.Queries;
+
     public class GoalPageService : IGoalPageService
     {
         private readonly IDataLink dataLink;
 
+        [System.Obsolete]
         public GoalPageService(IDataLink? dataLink = null)
         {
             this.dataLink = dataLink ?? DataLink.Instance; // Default to singleton if none provided
