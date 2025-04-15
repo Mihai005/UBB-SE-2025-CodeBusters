@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Navigation;
 using System.Diagnostics;
 using MealPlannerProject.Services;
 using MealPlannerProject.ViewModels;
+using MealPlannerProject.Queries;
 
 namespace MealPlannerProject.Pages
 {
@@ -27,7 +28,7 @@ namespace MealPlannerProject.Pages
             try
             {
                 this.InitializeComponent();
-                viewModel = new BodyMetricsViewModel();
+                viewModel = new BodyMetricsViewModel(new BodyMetricService(DataLink.Instance));
                 this.DataContext = viewModel;
                 Debug.WriteLine("BodyMetricsPage initialized successfully.");
             }

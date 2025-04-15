@@ -1,28 +1,28 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media.Imaging;
-using Windows.Storage.Pickers;
-using System;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
-using WinRT.Interop;
-using MealPlannerProject.Models;
-using MealPlannerProject.Services;
-using MealPlannerProject.ViewModels;
-using Windows.Storage;
-
 namespace MealPlannerProject.Pages
 {
+    using System;
+    using MealPlannerProject.Models;
+    using MealPlannerProject.Services;
+    using MealPlannerProject.ViewModels;
+    using Microsoft.UI;
+    using Microsoft.UI.Windowing;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Controls.Primitives;
+    using Microsoft.UI.Xaml.Media.Imaging;
+    using Windows.Storage;
+    using Windows.Storage.Pickers;
+    using WinRT.Interop;
+
     public sealed partial class CreateMealPage : Page
     {
-        private readonly CreateMealViewModel _viewModel;
+        private readonly CreateMealViewModel viewModel;
 
         public CreateMealPage()
         {
             this.InitializeComponent();
-            _viewModel = new CreateMealViewModel();
-            this.DataContext = _viewModel;
+            this.viewModel = new CreateMealViewModel();
+            this.DataContext = this.viewModel;
         }
 
         private async void ChoosePictureButton_Click(object sender, RoutedEventArgs e)
@@ -40,13 +40,14 @@ namespace MealPlannerProject.Pages
             var file = await picker.PickSingleFileAsync();
             if (file != null)
             {
-                _viewModel.SelectedImage = file;
+                this.viewModel.SelectedImage = file;
                 var bitmapImage = new BitmapImage();
                 using (var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read))
                 {
                     await bitmapImage.SetSourceAsync(stream);
                 }
-                SelectedImage.Source = bitmapImage;
+
+                this.SelectedImage.Source = bitmapImage;
             }
         }
 
@@ -55,16 +56,16 @@ namespace MealPlannerProject.Pages
             try
             {
                 // Validate required fields
-                if (string.IsNullOrWhiteSpace(_viewModel.MealName) ||
-                    string.IsNullOrWhiteSpace(_viewModel.SelectedMealType) ||
-                    string.IsNullOrWhiteSpace(_viewModel.CookingTime))
+                if (string.IsNullOrWhiteSpace(this.viewModel.MealName) ||
+                    string.IsNullOrWhiteSpace(this.viewModel.SelectedMealType) ||
+                    string.IsNullOrWhiteSpace(this.viewModel.CookingTime))
                 {
                     var dialog = new ContentDialog
                     {
                         Title = "Validation Error",
                         Content = "Please enter all required fields: meal name, meal type, and cooking time.",
                         CloseButtonText = "OK",
-                        XamlRoot = this.XamlRoot
+                        XamlRoot = this.XamlRoot,
                     };
 
                     await dialog.ShowAsync();
@@ -74,37 +75,35 @@ namespace MealPlannerProject.Pages
                 // Create meal with all required properties
                 var meal = new Meal
                 {
-                    Name = _viewModel.MealName,
-                    Recipe = _viewModel.Directions.Count > 0 ? string.Join("\n", _viewModel.Directions) : "No directions provided",
-                    Category = _viewModel.SelectedMealType ?? "Other",
-                    CookingLevel = _viewModel.SelectedCookingLevel ?? "Beginner",
-                    PreparationTime = int.TryParse(_viewModel.CookingTime, out int time) ? time : 0,
-                    PhotoLink = _viewModel.SelectedImage?.Path ?? "default.jpg",
-                    Calories = _viewModel.TotalCalories,
-                    Protein = _viewModel.TotalProtein,
-                    Carbohydrates = _viewModel.TotalCarbs,
-                    Fat = _viewModel.TotalFats,
-                    Fiber = _viewModel.TotalFiber,
-                    Sugar = _viewModel.TotalSugar,
-                    CreatedAt = DateTime.Now
+                    Name = this.viewModel.MealName,
+                    Recipe = this.viewModel.Directions.Count > 0 ? string.Join("\n", viewModel.Directions) : "No directions provided",
+                    Category = this.viewModel.SelectedMealType ?? "Other",
+                    CookingLevel = this.viewModel.SelectedCookingLevel ?? "Beginner",
+                    PreparationTime = int.TryParse(this.viewModel.CookingTime, out int time) ? time : 0,
+                    PhotoLink = this.viewModel.SelectedImage?.Path ?? "default.jpg",
+                    Calories = this.viewModel.TotalCalories,
+                    Protein = this.viewModel.TotalProtein,
+                    Carbohydrates = this.viewModel.TotalCarbs,
+                    Fat = this.viewModel.TotalFats,
+                    Fiber = this.viewModel.TotalFiber,
+                    Sugar = this.viewModel.TotalSugar,
+                    CreatedAt = DateTime.Now,
                 };
 
-                bool success = await _viewModel.CreateMealAsync(meal);
+                bool success = await viewModel.CreateMealAsync(meal);
 
                 if (success)
                 {
-                    
-
                     var dialog = new ContentDialog
                     {
                         Title = "Success",
                         Content = "Meal saved successfully!",
                         CloseButtonText = "OK",
-                        XamlRoot = this.XamlRoot
+                        XamlRoot = this.XamlRoot,
                     };
 
                     await dialog.ShowAsync();
-                    Frame.Navigate(typeof(MainPage));
+                    this.Frame.Navigate(typeof(MainPage));
                 }
                 else
                 {
@@ -113,7 +112,7 @@ namespace MealPlannerProject.Pages
                         Title = "Error",
                         Content = "Failed to save meal. Please try again.",
                         CloseButtonText = "OK",
-                        XamlRoot = this.XamlRoot
+                        XamlRoot = this.XamlRoot,
                     };
 
                     await dialog.ShowAsync();
@@ -129,7 +128,7 @@ namespace MealPlannerProject.Pages
                     Title = "Error",
                     Content = $"An error occurred: {ex.Message}",
                     CloseButtonText = "OK",
-                    XamlRoot = this.XamlRoot
+                    XamlRoot = this.XamlRoot,
                 };
 
                 await dialog.ShowAsync();
@@ -138,7 +137,7 @@ namespace MealPlannerProject.Pages
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

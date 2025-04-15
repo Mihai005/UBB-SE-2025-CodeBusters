@@ -1,14 +1,14 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using System;
-
-namespace MealPlannerProject.Converters
+﻿namespace MealPlannerProject.Converters
 {
+    using System;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Data;
+
     public class GoalButtonStyleConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public object? Convert(object value, Type targetType, object parameter, string language)
         {
-            string goal = value as string;
+            string? goal = value as string;
             switch (goal)
             {
                 case "Lose weight":

@@ -1,52 +1,51 @@
-﻿using MealPlannerProject.Queries;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MealPlannerProject.Interfaces.Services;
-namespace MealPlannerProject.Services
+﻿namespace MealPlannerProject.Services
 {
+    using System;
+    using System.Data.SqlClient;
+    using MealPlannerProject.Interfaces;
+    using MealPlannerProject.Interfaces.Services;
+
     /// <summary>
     /// Service for managing body metrics of users.
     /// </summary>
     public class BodyMetricService : IBodyMetricService
     {
+        private readonly IDataLink dataLink;
+
+        /// <summary>
+        /// Constructor that takes a data link dependency.
+        /// </summary>
+        public BodyMetricService(IDataLink ddataLink)
+        {
+            this.dataLink = ddataLink;
+        }
+
         /// <summary>
         /// Updates the body metrics of a user in the database.
         /// </summary>
-        /// <param name="firstName">The first name of the user.</param>
-        /// <param name="lastName">The last name of the user.</param>
-        /// <param name="weight">The weight of the user.</param>
-        /// <param name="height">The height of the user.</param>
-        /// <param name="targetGoal">The target goal of the user.</param>
+        [Obsolete]
         public void UpdateUserBodyMetrics(string firstName, string lastName, string weight, string height, string targetGoal)
         {
             float userWeight = float.Parse(weight);
             float userHeight = float.Parse(height);
-            float? userTargetGoal;
-            if (targetGoal == "")
-                userTargetGoal = null;
-            else
-                userTargetGoal = float.Parse(targetGoal);
+            float? userTargetGoal = string.IsNullOrWhiteSpace(targetGoal) ? null : float.Parse(targetGoal);
 
             var parameters = new SqlParameter[]
             {
-                    new SqlParameter("@u_name", $"{lastName} {firstName}")
+                new SqlParameter("@u_name", $"{lastName} {firstName}"),
             };
 
-            int userId = DataLink.Instance.ExecuteScalar<int>("SELECT dbo.GetUserByName(@u_name)", parameters, false);
+            int userId = this.dataLink.ExecuteScalar<int>("SELECT dbo.GetUserByName(@u_name)", parameters, false);
 
             parameters = new SqlParameter[]
             {
-                    new SqlParameter("@u_id", userId),
-                    new SqlParameter("@u_weight", userWeight),
-                    new SqlParameter("@u_height", userHeight),
-                    new SqlParameter("@u_goal", userTargetGoal == null? DBNull.Value: userTargetGoal),
+                new SqlParameter("@u_id", userId),
+                new SqlParameter("@u_weight", userWeight),
+                new SqlParameter("@u_height", userHeight),
+                new SqlParameter("@u_goal", userTargetGoal ?? (object)DBNull.Value),
             };
 
-            DataLink.Instance.ExecuteNonQuery("UpdateUserBodyMetrics", parameters);
+            this.dataLink.ExecuteNonQuery("UpdateUserBodyMetrics", parameters);
         }
     }
 }

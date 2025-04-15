@@ -1,57 +1,57 @@
-﻿using MealPlannerProject.ViewModels;
-using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MealPlannerProject.Services
+﻿namespace MealPlannerProject.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using MealPlannerProject.ViewModels;
+    using Microsoft.UI.Xaml.Controls;
+
     public class NavigationService
     {
-        private static NavigationService _instance;
-        private Frame _mainFrame;
+        private static NavigationService? instance;
+        private Frame? mainFrame;
 
-        public static NavigationService Instance => _instance ??= new NavigationService();
+        public static NavigationService Instance => instance ??= new NavigationService();
 
         public void Initialize(Frame mainFrame)
         {
-            _mainFrame = mainFrame;
+            this.mainFrame = mainFrame;
         }
 
-        public void NavigateTo(Type pageType, object parameter = null)
+        public void NavigateTo(Type pageType, object? parameter = null)
         {
-            _mainFrame?.Navigate(pageType, parameter);
+            this.mainFrame?.Navigate(pageType, parameter);
         }
 
         public void GoBack()
         {
-            if (_mainFrame?.CanGoBack == true)
+            if (this.mainFrame?.CanGoBack == true)
             {
-                _mainFrame.GoBack();
+                this.mainFrame.GoBack();
             }
         }
 
         internal void NavigateTo(Type type, BodyMetricsViewModel bodyMetricsViewModel)
         {
-            _mainFrame?.Navigate(type, bodyMetricsViewModel);
+            this.mainFrame?.Navigate(type, bodyMetricsViewModel);
         }
 
         internal void NavigateTo(Type type, GoalPageViewModel goalPageViewModel)
         {
-            _mainFrame?.Navigate(type, goalPageViewModel);
+            this.mainFrame?.Navigate(type, goalPageViewModel);
         }
 
         internal void NavigateTo(Type type, ActivityLevelViewModel activityLevelViewModel)
         {
-            _mainFrame?.Navigate(type, activityLevelViewModel);
+            this.mainFrame?.Navigate(type, activityLevelViewModel);
         }
 
         internal void NavigateTo(Type type, CookingLevelViewModel cookingLevelViewModel)
         {
-            //throw new NotImplementedException();
-            _mainFrame?.Navigate(type, cookingLevelViewModel);
+            // throw new NotImplementedException();
+            this.mainFrame?.Navigate(type, cookingLevelViewModel);
         }
     }
 }
