@@ -10,6 +10,7 @@ namespace MealPlannerProject.Services
 
         public CalorieService()
         {
+            _dataLink = DataLink.Instance;
         }
 
         public CalorieService(IDataLink dataLink)

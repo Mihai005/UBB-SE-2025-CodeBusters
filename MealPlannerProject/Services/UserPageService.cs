@@ -12,7 +12,7 @@ namespace MealPlannerProject.Services
 
         public UserPageService()
         {
-            // Default constructor for dependency injection
+            _dataLink = DataLink.Instance;
         }
 
         public UserPageService(IDataLink dataLink)
@@ -27,7 +27,7 @@ namespace MealPlannerProject.Services
                 new SqlParameter("@u_name", name)
             };
 
-            int? userId = _dataLink.ExecuteScalar<int?>("SELECT dbo.GetUserByName(@u_name)", parameters, false);
+            int? userId = _dataLink.ExecuteScalar<int>("SELECT dbo.GetUserByName(@u_name)", parameters, false);
 
             return userId.HasValue && userId.Value > 0 ? userId.Value : -1;
         }
