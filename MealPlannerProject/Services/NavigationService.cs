@@ -5,10 +5,12 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using MealPlannerProject.Interfaces.Services;
     using MealPlannerProject.ViewModels;
     using Microsoft.UI.Xaml.Controls;
+    using Windows.Networking.Connectivity;
 
-    public class NavigationService
+    public class NavigationService : INavigationService
     {
         private static NavigationService? instance;
         private Frame? mainFrame;

@@ -8,53 +8,30 @@
     using System.Text;
     using System.Threading.Tasks;
     using MealPlannerProject.Interfaces;
+    using MealPlannerProject.Interfaces.Repositories;
     using MealPlannerProject.Interfaces.Services;
     using MealPlannerProject.Queries;
+    using MealPlannerProject.Repositories;
     using Windows.ApplicationModel.Appointments.AppointmentsProvider;
 
     public class CookingPageService : ICookingPageService
     {
-        private readonly IDataLink dataLink;
+        private readonly ICookingPageRepository CookingPageRepo;
 
-        [Obsolete]
         public CookingPageService()
-            : this(DataLink.Instance) { }
-
-        // This constructor allows injecting a mock for tests
-        public CookingPageService(IDataLink dataLink)
         {
-            this.dataLink = dataLink;
+            this.CookingPageRepo = new CookingPageRepository();
         }
 
         [Obsolete]
         public void AddCookingSkill(string firstName, string lastName, string cookingDescription)
         {
             Debug.WriteLine($"Adding cooking skill {cookingDescription} for user {firstName} {lastName}");
-            string u_name = lastName + " " + firstName;
 
-            var parameters = new SqlParameter[]
-            {
-            new SqlParameter("@u_name", u_name),
-            };
+            int userId = this.CookingPageRepo.GetUserIdByName(firstName, lastName);
+            int skillId = this.CookingPageRepo.GetCookingSkillIdByDescription(cookingDescription);
 
-            Debug.WriteLine($"User name: {u_name}");
-            int user_id = this.dataLink.ExecuteScalar<int>("SELECT dbo.GetUserByName(@u_name)", parameters, false);
-            Debug.WriteLine($"User ID: {user_id}");
-
-            parameters = new SqlParameter[]
-            {
-            new SqlParameter("@cs_description", cookingDescription),
-            };
-
-            int cookingSkill_id = this.dataLink.ExecuteScalar<int>("SELECT dbo.GetCookingSkillByDescription(@cs_description)", parameters, false);
-
-            parameters = new SqlParameter[]
-            {
-            new SqlParameter("@u_id", user_id),
-            new SqlParameter("@cs_id", cookingSkill_id),
-            };
-
-            this.dataLink.ExecuteNonQuery("UpdateUserCookingSkill", parameters);
+            this.CookingPageRepo.UpdateUserCookingSkill(userId, skillId);
         }
     }
 }

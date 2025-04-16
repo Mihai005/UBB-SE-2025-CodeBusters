@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using MealPlannerProject.Interfaces.Services;
 using MealPlannerProject.Pages;
+using MealPlannerProject.Queries;
+using MealPlannerProject.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -10,8 +12,7 @@ namespace MealPlannerProject.ViewModels
 {
     public class DietaryPreferencesViewModel : INotifyPropertyChanged
     {
-        private readonly IDietaryPreferencesService _dietaryPreferencesService;
-        private readonly INavigationService _navigationService;
+        private readonly IDietaryPreferencesService _dietaryPreferencesService = new DietaryPreferencesService(DataLink.Instance);
 
         public ICommand BackCommand { get; set; }
         public ICommand NextCommand { get; set; }
@@ -69,40 +70,32 @@ namespace MealPlannerProject.ViewModels
             }
         }
 
-        public DietaryPreferencesViewModel() 
+        public DietaryPreferencesViewModel()
         {
-            // Default constructor for XAML binding
-        }
-
-        public DietaryPreferencesViewModel(IDietaryPreferencesService dietaryPreferencesService, INavigationService navigationService)
-        {
-            _dietaryPreferencesService = dietaryPreferencesService;
-            _navigationService = navigationService;
-            
             BackCommand = new RelayCommand(BackAction);
             NextCommand = new RelayCommand(NextAction);
 
             // Populate options
             OtherDietOptions = new ObservableCollection<string>
-        {
-            "None", "Mediterranean", "Low-Fat", "Diabetic-Friendly", "Kosher", "Halal"
-        };
+            {
+                "None", "Mediterranean", "Low-Fat", "Diabetic-Friendly", "Kosher", "Halal"
+            };
 
             AllergenOptions = new ObservableCollection<string>
-        {
-            "None", "Peanuts", "Tree Nuts", "Dairy", "Eggs", "Gluten", "Shellfish", "Soy", "Fish", "Sesame"
-        };
+            {
+                "None", "Peanuts", "Tree Nuts", "Dairy", "Eggs", "Gluten", "Shellfish", "Soy", "Fish", "Sesame"
+            };
         }
 
         private void BackAction()
         {
-            _navigationService.GoBack();
+            NavigationService.Instance.GoBack();
         }
 
         private void NextAction()
         {
             _dietaryPreferencesService.AddAllergyAndDietaryPreference(FirstName, LastName, OtherDiet, Allergens);
-            _navigationService.NavigateTo(typeof(YoureAllSetPage), this);
+            NavigationService.Instance.NavigateTo(typeof(YoureAllSetPage), this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
