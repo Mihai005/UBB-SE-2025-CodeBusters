@@ -24,6 +24,7 @@
                         return Application.Current.Resources["SuperActiveButtonStyle"] as Style;
                 }
             }
+
             return null;
         }
 

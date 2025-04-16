@@ -1,8 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿// Refactored DietaryPreferencesViewModel.cs
+using CommunityToolkit.Mvvm.Input;
 using MealPlannerProject.Interfaces.Services;
 using MealPlannerProject.Pages;
-using MealPlannerProject.Queries;
-using MealPlannerProject.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -11,10 +10,11 @@ namespace MealPlannerProject.ViewModels
 {
     public class DietaryPreferencesViewModel : INotifyPropertyChanged
     {
+        private readonly IDietaryPreferencesService _dietaryPreferencesService;
+        private readonly INavigationService _navigationService;
+
         public ICommand BackCommand { get; set; }
         public ICommand NextCommand { get; set; }
-
-        private IDietaryPreferencesService _dietaryPreferencesService = new DietaryPreferencesService(DataLink.Instance);
         
         public ObservableCollection<string> OtherDietOptions { get; set; }
         public ObservableCollection<string> AllergenOptions { get; set; }
@@ -47,8 +47,38 @@ namespace MealPlannerProject.ViewModels
             }
         }
 
-        public DietaryPreferencesViewModel()
+        private string _firstName;
+        public string FirstName
         {
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged(nameof(FirstName));
+            }
+        }
+
+        private string _lastName;
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged(nameof(LastName));
+            }
+        }
+
+        public DietaryPreferencesViewModel() 
+        {
+            // Default constructor for XAML binding
+        }
+
+        public DietaryPreferencesViewModel(IDietaryPreferencesService dietaryPreferencesService, INavigationService navigationService)
+        {
+            _dietaryPreferencesService = dietaryPreferencesService;
+            _navigationService = navigationService;
+            
             BackCommand = new RelayCommand(BackAction);
             NextCommand = new RelayCommand(NextAction);
 
@@ -66,13 +96,13 @@ namespace MealPlannerProject.ViewModels
 
         private void BackAction()
         {
-            NavigationService.Instance.GoBack();
+            _navigationService.GoBack();
         }
 
         private void NextAction()
         {
             _dietaryPreferencesService.AddAllergyAndDietaryPreference(FirstName, LastName, OtherDiet, Allergens);
-            NavigationService.Instance.NavigateTo(typeof(YoureAllSetPage), this);
+            _navigationService.NavigateTo(typeof(YoureAllSetPage), this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -81,36 +111,10 @@ namespace MealPlannerProject.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string firstName;
-        private string lastName;
-
-        public string FirstName
-        {
-            get => firstName;
-            set
-            {
-                firstName = value;
-                OnPropertyChanged(nameof(FirstName));
-            }
-        }
-
-        public string LastName
-        {
-            get => lastName;
-            set
-            {
-                lastName = value;
-                OnPropertyChanged(nameof(LastName));
-            }
-        }
-
-
-
         public void SetUserInfo(string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
         }
-
     }
 }

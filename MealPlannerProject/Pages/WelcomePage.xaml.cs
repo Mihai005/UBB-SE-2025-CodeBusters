@@ -27,7 +27,6 @@ namespace MealPlannerProject.Pages
         {
             this.InitializeComponent();
             this.DataContext = new MealPlannerProject.ViewModels.WelcomeViewModel();
-
         }
     }
 }

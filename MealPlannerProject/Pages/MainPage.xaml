@@ -135,17 +135,17 @@
 
                             <StackPanel Grid.Row="0">
                                 <TextBlock Text="Base Goal" FontSize="15" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Text="{Binding BaseGoal_Cal}" FontSize="15" Foreground="White" />
+                                <TextBlock Text="{Binding BaseGoal_Calories}" FontSize="15" Foreground="White" />
                             </StackPanel>
 
                             <StackPanel Grid.Row="1">
                                 <TextBlock Text="Food" FontSize="15" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Text="{Binding Food_Cal}" FontSize="15" Foreground="White" />
+                                <TextBlock Text="{Binding Food_Calories}" FontSize="15" Foreground="White" />
                             </StackPanel>
 
                             <StackPanel Grid.Row="2">
                                 <TextBlock Text="Exercise" FontSize="15" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Text="{Binding Exercise_Cal}" FontSize="15" Foreground="White" />
+                                <TextBlock Text="{Binding Exercise_Calories}" FontSize="15" Foreground="White" />
                             </StackPanel>
 
                         </Grid>
@@ -193,15 +193,15 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <TextBlock Text="{Binding LeftPr}" FontSize="15" Foreground="White" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Remaining_Protein}" FontSize="15" Foreground="White" TextAlignment="Right"/>
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <TextBlock Text="{Binding GoalPr}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
+                                    <TextBlock Text="{Binding Goal_Protein}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <TextBlock Text="{Binding TotalPr}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
+                                    <TextBlock Text="{Binding Total_Protein}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -217,13 +217,13 @@
                                     <TextBlock Text="Carbohydrates" FontSize="15" Foreground="White"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding LeftCarb}" FontSize="15" Foreground="White" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Remaining_Carbohydrates}" FontSize="15" Foreground="White" TextAlignment="Right"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding GoalCarb}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
+                                    <TextBlock Text="{Binding Goal_Carbohydrates}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding TotalCarb}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
+                                    <TextBlock Text="{Binding Total_Carbohydrates}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
                                 </StackPanel>
                             </Grid>
                         </Border>
@@ -240,13 +240,13 @@
                                     <TextBlock Text="Fiber" FontSize="15" Foreground="White"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding LeftFib}" FontSize="15" Foreground="White" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Remaining_Fiber}" FontSize="15" Foreground="White" TextAlignment="Right"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding GoalFib}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
+                                    <TextBlock Text="{Binding Goal_Fiber}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding TotalFib}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
+                                    <TextBlock Text="{Binding Total_Fiber}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
                                 </StackPanel>
 
                             </Grid>
@@ -263,13 +263,13 @@
                                     <TextBlock Text="Fat" FontSize="15" Foreground="White"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding LeftFat}" FontSize="15" Foreground="White" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Remaining_Fat}" FontSize="15" Foreground="White" TextAlignment="Right"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding GoalFat}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
+                                    <TextBlock Text="{Binding Goal_Fat}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding TotalFat}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
+                                    <TextBlock Text="{Binding Total_Fat}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
                                 </StackPanel>
 
                             </Grid>
@@ -287,13 +287,13 @@
                                     <TextBlock Text="Sugar" FontSize="15" Foreground="White"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding LeftSug}" FontSize="15" Foreground="White" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Remaining_Sugar}" FontSize="15" Foreground="White" TextAlignment="Right"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding GoalSug}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
+                                    <TextBlock Text="{Binding Goal_Sugar}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="30, 0"/>
                                 </StackPanel>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding TotalSug}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
+                                    <TextBlock Text="{Binding Total_Sugar}" FontSize="15" Foreground="White" TextAlignment="Right" Margin="60,0"/>
                                 </StackPanel>
 
                             </Grid>
@@ -326,7 +326,7 @@
                             <Rectangle Width="90" Height="150" Fill="#367bc9" Stroke="#2B486A" StrokeThickness="4"/>
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding WaterIntake, Mode=OneWay}" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding WaterGoal}" FontSize="12" Foreground="White" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Water_Goal}" FontSize="12" Foreground="White" HorizontalAlignment="Center"/>
                             </StackPanel>
 
                         </Grid>
@@ -577,7 +577,7 @@
                                     <TextBlock Text="{Binding R1}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="1">
-                                    <TextBlock Text="{Binding R1Cal}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding R1Calories}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="2" Background="#C76E4E" CornerRadius="10" Padding="5" HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding R1Diet}" FontSize="15" Foreground="White" />
@@ -621,7 +621,7 @@
                                     <TextBlock Text="{Binding R2}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="1">
-                                    <TextBlock Text="{Binding R2Cal}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding R2Calories}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="2" Background="#133224" CornerRadius="10" Padding="5" HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding R2Diet}" FontSize="15" Foreground="White" />
@@ -666,7 +666,7 @@
                                     <TextBlock Text="{Binding R3}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="1">
-                                    <TextBlock Text="{Binding R3Cal}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding R3Calories}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="2" Background="#B5885E" CornerRadius="10" Padding="5" HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding R3Diet}" FontSize="15" Foreground="White" />
@@ -710,7 +710,7 @@
                                     <TextBlock Text="{Binding R4}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="1">
-                                    <TextBlock Text="{Binding R4Cal}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding R4Calories}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="2" Background="#C76E4E" CornerRadius="10" Padding="5" HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding R4Diet}" FontSize="15" Foreground="White" />
@@ -754,7 +754,7 @@
                                     <TextBlock Text="{Binding R5}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="1">
-                                    <TextBlock Text="{Binding R5Cal}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding R5Calories}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="2" Background="#F9E5DA" CornerRadius="10" Padding="5" HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding R5Diet}" FontSize="15" Foreground="Black" />
@@ -798,7 +798,7 @@
                                     <TextBlock Text="{Binding R6}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="1">
-                                    <TextBlock Text="{Binding R6Cal}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding R6Calories}" FontSize="15" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="2" Background="#133224" CornerRadius="10" Padding="5" HorizontalAlignment="Center">
                                     <TextBlock Text="{Binding R6Diet}" FontSize="15" Foreground="White" />
