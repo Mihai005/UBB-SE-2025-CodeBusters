@@ -2,6 +2,7 @@
 {
     using System.ComponentModel;
     using System.Windows.Input;
+    using MealPlannerProject.Models;
     using MealPlannerProject.Pages;
     using MealPlannerProject.Services;
 
@@ -9,33 +10,31 @@
     {
         public ICommand NextCommand { get; }
 
-        private string firstName;
-        private string lastName;
+        private readonly YoureAllSetModel model;
 
         public YoureAllSetViewModel()
         {
             this.NextCommand = new RelayCommand(this.GoNext);
-            this.firstName = string.Empty;
-            this.lastName = string.Empty;
+            this.model = new YoureAllSetModel();
         }
 
         public string FirstName
         {
-            get => this.firstName;
+            get => this.model.FirstName;
             set
             {
-                this.firstName = value;
-                this.OnPropertyChanged(nameof(this.FirstName));
+                this.model.FirstName = value;
+                this.OnPropertyChanged(nameof(this.model.FirstName));
             }
         }
 
         public string LastName
         {
-            get => this.lastName;
+            get => this.model.LastName;
             set
             {
-                this.lastName = value;
-                this.OnPropertyChanged(nameof(this.LastName));
+                this.model.LastName = value;
+                this.OnPropertyChanged(nameof(this.model.LastName));
             }
         }
 

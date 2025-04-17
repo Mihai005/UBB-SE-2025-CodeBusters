@@ -54,4 +54,25 @@
             this.CreatedAt = DateTime.Now;
         }
     }
+
+    public enum MealModel
+    {
+         SuccessfulCreationIndicator = 0,
+         FailedOperationCode = -1,
+         BreakfastTypeId = 1,
+         LunchTypeId = 2,
+         DinnerTypeId = 3,
+         SnackTypeId = 4,
+         DessertTypeId = 5,
+         PostWorkoutTypeId = 6,
+         PreWorkoutTypeId = 7,
+         VeganMealTypeId = 8,
+         HighProteinMealTypeId = 9,
+         LowCarbMealTypeId = 10,
+         DefaultMealTypeId = 1,
+         BeginnerSkillId = 1,
+         IntermediateSkillId = 2,
+         AdvancedSkillId = 3,
+         DefaultCookingSkillId = 1,
+    }
 }

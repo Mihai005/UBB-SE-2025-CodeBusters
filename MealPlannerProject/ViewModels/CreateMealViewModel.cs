@@ -288,7 +288,7 @@
                     {
                         // Get ingredient from database
                         var ingredient = await this.mealService.RetrieveIngredientByNameAsync(ingredientBox.Text); // Fixes SA1101
-                        if (ingredient != null)
+                        if (ingredient != Ingredient.NoIngredient)
                         {
                             var mealIngredient = new MealIngredient
                             {

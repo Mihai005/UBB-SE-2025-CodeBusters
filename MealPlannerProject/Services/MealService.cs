@@ -12,29 +12,10 @@ namespace MealPlannerProject.Services
 
     public class MealService : IMealService
     {
-        private const int SuccessfulCreationIndicator = 0;
-        private const int FailedOperationCode = -1;
-
-        private const int BreakfastTypeId = 1;
-        private const int LunchTypeId = 2;
-        private const int DinnerTypeId = 3;
-        private const int SnackTypeId = 4;
-        private const int DessertTypeId = 5;
-        private const int PostWorkoutTypeId = 6;
-        private const int PreWorkoutTypeId = 7;
-        private const int VeganMealTypeId = 8;
-        private const int HighProteinMealTypeId = 9;
-        private const int LowCarbMealTypeId = 10;
-        private const int DefaultMealTypeId = 1;
-
-        private const int BeginnerSkillId = 1;
-        private const int IntermediateSkillId = 2;
-        private const int AdvancedSkillId = 3;
-        private const int DefaultCookingSkillId = 1;
-
         private readonly MealRepository mealDatabaseRepository;
         private readonly IngredientRepository ingredientDatabaseRepository;
 
+        [Obsolete]
         public MealService()
         {
             this.mealDatabaseRepository = new MealRepository();
@@ -54,7 +35,7 @@ namespace MealPlannerProject.Services
                     cookingSkillIdentifier,
                     mealTypeIdentifier);
 
-                if (createdMealIdentifier > SuccessfulCreationIndicator)
+                if (createdMealIdentifier > ((int)MealModel.SuccessfulCreationIndicator))
                 {
                     Debug.WriteLine("Meal created successfully");
                     return true;
@@ -73,6 +54,7 @@ namespace MealPlannerProject.Services
             }
         }
 
+        [Obsolete]
         public async Task<List<Meal>> RetrieveAllMealsAsync()
         {
             List<Meal> retrievedMeals = new List<Meal>();
@@ -141,7 +123,7 @@ namespace MealPlannerProject.Services
             {
                 Debug.WriteLine($"Error creating meal: {exception.Message}");
                 Debug.WriteLine($"Stack trace: {exception.StackTrace}");
-                return FailedOperationCode;
+                return (int)MealModel.FailedOperationCode;
             }
         }
 
@@ -153,24 +135,24 @@ namespace MealPlannerProject.Services
                 ingredientIdentifier,
                 ingredientQuantity);
 
-            return operationResult > SuccessfulCreationIndicator;
+            return operationResult > (int)MealModel.SuccessfulCreationIndicator;
         }
 
         private int ResolveMealTypeIdentifier(string mealCategory)
         {
             return mealCategory?.ToLower() switch
             {
-                "breakfast" => BreakfastTypeId,
-                "lunch" => LunchTypeId,
-                "dinner" => DinnerTypeId,
-                "snack" => SnackTypeId,
-                "dessert" => DessertTypeId,
-                "post-workout" => PostWorkoutTypeId,
-                "pre-workout" => PreWorkoutTypeId,
-                "vegan meal" => VeganMealTypeId,
-                "high-protein meal" => HighProteinMealTypeId,
-                "low-carb meal" => LowCarbMealTypeId,
-                _ => DefaultMealTypeId
+                "breakfast" => (int)MealModel.BreakfastTypeId,
+                "lunch" => (int)MealModel.LunchTypeId,
+                "dinner" => (int)MealModel.DinnerTypeId,
+                "snack" => (int)MealModel.SnackTypeId,
+                "dessert" => (int)MealModel.DessertTypeId,
+                "post-workout" => (int)MealModel.PostWorkoutTypeId,
+                "pre-workout" => (int)MealModel.PreWorkoutTypeId,
+                "vegan meal" => (int)MealModel.VeganMealTypeId,
+                "high-protein meal" => (int)MealModel.HighProteinMealTypeId,
+                "low-carb meal" => (int)MealModel.LowCarbMealTypeId,
+                _ => (int)MealModel.DefaultMealTypeId
             };
         }
 
@@ -179,10 +161,10 @@ namespace MealPlannerProject.Services
             Debug.WriteLine($"ResolveCookingSkillIdentifier called with cooking skill level: {cookingSkillLevel}");
             return cookingSkillLevel?.ToLower() switch
             {
-                "beginner" => BeginnerSkillId,
-                "intermediate" => IntermediateSkillId,
-                "advanced" => AdvancedSkillId,
-                _ => DefaultCookingSkillId
+                "beginner" => (int)MealModel.BeginnerSkillId,
+                "intermediate" => (int)MealModel.IntermediateSkillId,
+                "advanced" => (int)MealModel.AdvancedSkillId,
+                _ => (int)MealModel.DefaultCookingSkillId
             };
         }
     }

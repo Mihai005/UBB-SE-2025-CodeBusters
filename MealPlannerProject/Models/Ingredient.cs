@@ -31,9 +31,19 @@
 
         [Column("sugar")]
         public float Sugar { get; set; }
-         
-        public Ingredient()
+
+        public Ingredient(int id, string name, float calories, float protein, float carbs, float fats, float fiber, float sugar)
         {
+            this.Id = id;
+            this.Name = name;
+            this.Calories = calories;
+            this.Protein = protein;
+            this.Carbs = carbs;
+            this.Fats = fats;
+            this.Fiber = fiber;
+            this.Sugar = sugar;
         }
+
+        public static Ingredient NoIngredient { get; private set; } = new Ingredient(-1, string.Empty, -1, -1, -1, -1, -1, -1);
     }
 }
