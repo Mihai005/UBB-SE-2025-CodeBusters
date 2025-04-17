@@ -1,4 +1,4 @@
-﻿namespace MealPlannerProjectTest.ConverterTesting
+﻿namespace MealPlannerProjectTest.ConvertersTesting
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Microsoft.UI.Xaml;

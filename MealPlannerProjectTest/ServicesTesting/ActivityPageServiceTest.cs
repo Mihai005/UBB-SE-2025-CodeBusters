@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace MealPlannerProjectTest.Services
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
     public class ActivityPageServiceTests

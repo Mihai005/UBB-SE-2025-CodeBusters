@@ -50,6 +50,8 @@ namespace MealPlannerProject.Pages
                     this.ShowErrorMessageDialog(EmptyCookingSkillSelectionError);
                     return;
                 }
+
+                this.cookingLevelViewModel.NavigateToNextPage();
             }
             catch (Exception exception)
             {

@@ -48,7 +48,7 @@ namespace MealPlannerProject.Pages
                     return;
                 }
 
-                _ = this.Frame.Navigate(typeof(ActivityLevelPage), this.goalPageViewModel);  // use discard...
+                this.goalPageViewModel.GoNext();
             }
             catch (Exception ex)
             {

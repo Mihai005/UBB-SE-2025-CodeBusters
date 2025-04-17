@@ -73,9 +73,8 @@ namespace MealPlannerProject.ViewModels
         }
 
         [System.Obsolete]
-        private void GoNext()
+        public void GoNext()
         {
-
             this.activityPageService.AddActivity(this.FirstName, this.LastName, this.SelectedActivity);
             NavigationService.Instance.NavigateTo(typeof(CookingLevelPage), this);
         }

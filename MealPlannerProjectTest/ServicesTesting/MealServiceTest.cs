@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace MealPlannerProjectTest.Services
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
     public class MealServiceTests

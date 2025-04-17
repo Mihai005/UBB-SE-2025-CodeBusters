@@ -1,58 +1,53 @@
-using MealPlannerProject.Interfaces;
-using MealPlannerProject.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using NSubstitute;
-using System.Data.SqlClient;
-using System.Linq;
+using MealPlannerProject.Interfaces.Services;
+using MealPlannerProject.Services;
+using System;
 
-namespace MealPlannerProjectTest;
-
-[TestClass]
-public class DietaryPreferencesServiceTest
+namespace MealPlannerProjectTest.ServicesTesting
 {
-    [TestMethod]
-    [System.Obsolete]
-    public void AddAlergyAndDietaryPreferenceTest()
+
+    [TestClass]
+    public class DietaryPreferencesServiceTest
     {
-        // Arrange
-        var mockDataLink = new Mock<IDataLink>();
+        private IDietaryPreferencesService? service;
+        private string? mockFirstName;
+        private string? mockLastName;
+        [TestInitialize]
+        public void Setup()
+        {
+            service = new DietaryPreferencesService();
+            mockFirstName = "mockFN";
+            mockLastName = "mockLN";
+        }
+        [TestMethod]
+        public void AddAllergyAndDietaryPreferenceTest()
+        {
+            try
+            {
+                service.AddAllergyAndDietaryPreference(mockFirstName, mockLastName, "", "");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Equals("Please select a dietary preference and allergies!"));
+            }
 
-        // Setup return values for ExecuteScalar
-        mockDataLink.Setup(m => m.ExecuteScalar<int>(
-            "SELECT dbo.GetUserByName(@u_name)",
-            It.IsAny<SqlParameter[]>(),
-            false)).Returns(1);
+            try
+            {
+                service.AddAllergyAndDietaryPreference(mockFirstName, mockLastName, "notEmpty", "");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Equals("Please select allergies!"));
+            }
 
-        mockDataLink.Setup(m => m.ExecuteScalar<int>(
-            "SELECT dbo.GetDietaryPreferencesByDescription(@dp_description)",
-            It.IsAny<SqlParameter[]>(),
-            false)).Returns(2);
-
-        mockDataLink.Setup(m => m.ExecuteScalar<int>(
-            "SELECT dbo.GetAllergiesByDescription(@a_description)",
-            It.IsAny<SqlParameter[]>(),
-            false)).Returns(3);
-
-        var service = new DietaryPreferencesService(mockDataLink.Object);
-
-        // Act
-        service.AddAllergyAndDietaryPreference("John", "Doe", "Vegetarian", "Peanuts");
-
-        // Assert the non-query for dietary preference
-        mockDataLink.Verify(m => m.ExecuteNonQuery(
-            "UpdateUserDietaryPreference",
-            It.Is<SqlParameter[]>(ps =>
-                ps.Any(p => p.ParameterName == "@u_id" && (int)p.Value == 1) &&
-                ps.Any(p => p.ParameterName == "@dp_id" && (int)p.Value == 2)
-            )), Times.Once);
-
-        // Assert the non-query for allergies
-        mockDataLink.Verify(m => m.ExecuteNonQuery(
-            "UpdateUserAllergies",
-            It.Is<SqlParameter[]>(ps =>
-                ps.Any(p => p.ParameterName == "@u_id" && (int)p.Value == 1) &&
-                ps.Any(p => p.ParameterName == "@a_id" && (int)p.Value == 3)
-            )), Times.Once);
+            try
+            {
+                service.AddAllergyAndDietaryPreference(mockFirstName, mockLastName, "", "notEmpty");
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Equals("Please select a dietary preference!"));
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@ using System;
 namespace MealPlannerProjectTest.ConvertersTesting
 {
     [TestClass]
-    public class GoalOpacityConverterTests
+    public class GoalOpacityConverterTestsTwo
     {
         private GoalOpacityConverter _converter;
 

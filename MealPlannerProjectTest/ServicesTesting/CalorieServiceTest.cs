@@ -5,7 +5,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace MealPlannerProjectTest.Services
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
     public class CalorieServiceTests

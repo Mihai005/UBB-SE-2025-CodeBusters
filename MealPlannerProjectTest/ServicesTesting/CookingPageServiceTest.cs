@@ -1,24 +1,27 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MealPlannerProject.Services;
+using MealPlannerProject.Repositories;
+using MealPlannerProject.Interfaces.Repositories;
 using MealPlannerProject.Interfaces;
+using MealPlannerProject.Interfaces.Services;
+using MealPlannerProject.Services;
 using NSubstitute;
 using System.Data.SqlClient;
 using System;
 using NSubstitute.ExceptionExtensions;
 
-namespace MealPlannerProjectTest
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
-    public class CookingPageServiceTests
+    public class CookingPageServiceTest
     {
         private IDataLink _mockDataLink;
-        private CookingPageService _service;
+        private ICookingPageService _service;
 
         [TestInitialize]
         public void Setup()
         {
             _mockDataLink = Substitute.For<IDataLink>();
-            _service = new CookingPageService(_mockDataLink);
+            _service = new CookingPageService();
         }
 
         [TestMethod]

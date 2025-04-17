@@ -1,35 +1,21 @@
 namespace MealPlannerProject.Pages
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Runtime.InteropServices.WindowsRuntime;
-    using MealPlannerProject.Interfaces.Services;
-    using MealPlannerProject.Queries;
-    using MealPlannerProject.Services;
     using MealPlannerProject.ViewModels;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
-    using Microsoft.UI.Xaml.Controls.Primitives;
-    using Microsoft.UI.Xaml.Data;
-    using Microsoft.UI.Xaml.Input;
-    using Microsoft.UI.Xaml.Media;
     using Microsoft.UI.Xaml.Navigation;
-    using Windows.Foundation;
-    using Windows.Foundation.Collections;
 
     public sealed partial class DietaryPreferencesPage : Page
     {
-
         private readonly DietaryPreferencesViewModel dietaryPreferencesViewModel;
 
         public DietaryPreferencesPage()
         {
             this.InitializeComponent();
-            dietaryPreferencesViewModel = new DietaryPreferencesViewModel();
-            this.DataContext = dietaryPreferencesViewModel;
+            this.dietaryPreferencesViewModel = new DietaryPreferencesViewModel();
+            this.DataContext = this.dietaryPreferencesViewModel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -39,23 +25,42 @@ namespace MealPlannerProject.Pages
             if (e.Parameter is CookingLevelViewModel cookingLevelViewModel)
             {
                 Debug.WriteLine($"Dietary Preferences page received user: {cookingLevelViewModel.FirstName} {cookingLevelViewModel.LastName}");
-                dietaryPreferencesViewModel.SetUserInfo(cookingLevelViewModel.FirstName, cookingLevelViewModel.LastName);
+                this.dietaryPreferencesViewModel.SetUserInfo(cookingLevelViewModel.FirstName, cookingLevelViewModel.LastName);
+            }
+        }
+
+        private async void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.dietaryPreferencesViewModel.NextAction();
+            }
+            catch (Exception ex)
+            {
+                var contentDialog = new ContentDialog()
+                {
+                    Title = "Error",
+                    Content = ex.Message,
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot,
+                };
+                await contentDialog.ShowAsync();
             }
         }
 
         private void OnBackCommandExecuted()
         {
-            if (Frame.CanGoBack)
+            if (this.Frame.CanGoBack)
             {
-                Frame.GoBack();
+                this.Frame.GoBack();
             }
         }
 
         private void OnNextCommandExecuted()
         {
-            if (Frame != null)
+            if (this.Frame != null)
             {
-                Frame.Navigate(typeof(YoureAllSetPage), dietaryPreferencesViewModel);
+                this.Frame.Navigate(typeof(YoureAllSetPage), this.dietaryPreferencesViewModel);
             }
         }
     }

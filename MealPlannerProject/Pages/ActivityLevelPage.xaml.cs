@@ -61,15 +61,15 @@ namespace MealPlannerProject.Pages
             {
                 if (!ActivityPageService.ValidateSelectedActivity(this.viewModel.SelectedActivity))
                 {
-                    await ShowErrorDialog("Please select an activity level.");
+                    await this.ShowErrorDialog("Please select an activity level.");
                     return;
                 }
 
-                this.Frame.Navigate(typeof(CookingLevelPage), this.viewModel);
+                this.viewModel.GoNext();
             }
             catch (Exception ex)
             {
-                await ShowErrorDialog($"An error occurred: {ex.Message}");
+                await this.ShowErrorDialog($"An error occurred: {ex.Message}");
             }
         }
     }

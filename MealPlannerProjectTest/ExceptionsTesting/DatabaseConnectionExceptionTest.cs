@@ -1,4 +1,4 @@
-﻿namespace MealPlannerProjectTest.ExceptionTesting
+﻿namespace MealPlannerProjectTest.ExceptionsTesting
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using MealPlannerProject.Exceptions;

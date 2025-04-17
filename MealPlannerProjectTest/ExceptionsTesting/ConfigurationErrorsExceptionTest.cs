@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MealPlannerProject.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MealPlannerTest.ExceptionsTesting
+namespace MealPlannerProjectTest.ExceptionsTesting
 {
     [TestClass]
     public class ConfigurationErrorsExceptionTest

@@ -1,90 +1,70 @@
-﻿// Refactored DietaryPreferencesViewModel.cs
-using CommunityToolkit.Mvvm.Input;
-using MealPlannerProject.Interfaces.Services;
-using MealPlannerProject.Pages;
-using MealPlannerProject.Queries;
-using MealPlannerProject.Services;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Input;
-
-namespace MealPlannerProject.ViewModels
+﻿namespace MealPlannerProject.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Windows.Input;
+    using MealPlannerProject.Interfaces.Services;
+    using MealPlannerProject.Pages;
+    using MealPlannerProject.Services;
+
     public class DietaryPreferencesViewModel : INotifyPropertyChanged
     {
-        private readonly IDietaryPreferencesService _dietaryPreferencesService = new DietaryPreferencesService(DataLink.Instance);
-
         public ICommand BackCommand { get; set; }
+
         public ICommand NextCommand { get; set; }
-        
+
+        private readonly IDietaryPreferencesService dietaryPreferencesService;
+
         public ObservableCollection<string> OtherDietOptions { get; set; }
+
         public ObservableCollection<string> AllergenOptions { get; set; }
 
-        private string _otherDiet;
+        private string otherDiet;
+
         public string OtherDiet
         {
-            get => _otherDiet;
+            get => this.otherDiet;
             set
             {
-                if (_otherDiet != value)
+                if (this.otherDiet != value)
                 {
-                    _otherDiet = value;
-                    OnPropertyChanged(nameof(OtherDiet));
+                    this.otherDiet = value;
+                    this.OnPropertyChanged(nameof(this.OtherDiet));
                 }
             }
         }
 
-        private string _allergens;
+        private string allergens;
+
         public string Allergens
         {
-            get => _allergens;
+            get => this.allergens;
             set
             {
-                if (_allergens != value)
+                if (this.allergens != value)
                 {
-                    _allergens = value;
-                    OnPropertyChanged(nameof(Allergens));
+                    this.allergens = value;
+                    this.OnPropertyChanged(nameof(this.Allergens));
                 }
-            }
-        }
-
-        private string _firstName;
-        public string FirstName
-        {
-            get => _firstName;
-            set
-            {
-                _firstName = value;
-                OnPropertyChanged(nameof(FirstName));
-            }
-        }
-
-        private string _lastName;
-        public string LastName
-        {
-            get => _lastName;
-            set
-            {
-                _lastName = value;
-                OnPropertyChanged(nameof(LastName));
             }
         }
 
         public DietaryPreferencesViewModel()
         {
-            BackCommand = new RelayCommand(BackAction);
-            NextCommand = new RelayCommand(NextAction);
+            this.dietaryPreferencesService = new DietaryPreferencesService();
+            this.BackCommand = new RelayCommand(this.BackAction);
+            this.NextCommand = new RelayCommand(this.NextAction);
 
             // Populate options
-            OtherDietOptions = new ObservableCollection<string>
-            {
-                "None", "Mediterranean", "Low-Fat", "Diabetic-Friendly", "Kosher", "Halal"
-            };
+            this.OtherDietOptions = new ObservableCollection<string>
+        {
+            "None", "Mediterranean", "Low-Fat", "Diabetic-Friendly", "Kosher", "Halal",
+        };
 
-            AllergenOptions = new ObservableCollection<string>
-            {
-                "None", "Peanuts", "Tree Nuts", "Dairy", "Eggs", "Gluten", "Shellfish", "Soy", "Fish", "Sesame"
-            };
+            this.AllergenOptions = new ObservableCollection<string>
+        {
+            "None", "Peanuts", "Tree Nuts", "Dairy", "Eggs", "Gluten", "Shellfish", "Soy", "Fish", "Sesame",
+        };
         }
 
         private void BackAction()
@@ -92,22 +72,45 @@ namespace MealPlannerProject.ViewModels
             NavigationService.Instance.GoBack();
         }
 
-        private void NextAction()
+        public void NextAction()
         {
-            _dietaryPreferencesService.AddAllergyAndDietaryPreference(FirstName, LastName, OtherDiet, Allergens);
+            this.dietaryPreferencesService.AddAllergyAndDietaryPreference(this.FirstName, this.LastName, this.OtherDiet, this.Allergens);
             NavigationService.Instance.NavigateTo(typeof(YoureAllSetPage), this);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string firstName;
+        private string lastName;
+
+        public string FirstName
+        {
+            get => this.firstName;
+            set
+            {
+                this.firstName = value;
+                this.OnPropertyChanged(nameof(this.FirstName));
+            }
+        }
+
+        public string LastName
+        {
+            get => this.lastName;
+            set
+            {
+                this.lastName = value;
+                this.OnPropertyChanged(nameof(this.LastName));
+            }
         }
 
         public void SetUserInfo(string firstName, string lastName)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            this.LastName = lastName;
         }
     }
 }

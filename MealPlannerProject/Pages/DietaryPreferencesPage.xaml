@@ -73,11 +73,10 @@
 
         <!-- Next Button -->
         <Button Content="→"
-            FontSize="40" Width="50" Height="50"
-            HorizontalAlignment="Right" VerticalAlignment="Bottom"
-            Background="#133224" Foreground="#FCE8DC"
-            CornerRadius="25" Padding="0, -7, 0, 0"
-            Command="{Binding NextCommand}"
-        />
+                FontSize="40" Width="50" Height="50"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Background="#133224" Foreground="#FCE8DC"
+                CornerRadius="25" Padding="0, -7, 0, 0"
+                Click="NextButton_Click"/>
     </Grid>
 </Page>
