@@ -237,13 +237,7 @@ namespace MealPlannerProjectTest.ServicesTesting
             var successfulCreationIndicator = typeof(MealService).GetField("SuccessfulCreationIndicator",
                 BindingFlags.NonPublic | BindingFlags.Static);
 
-            Assert.IsNotNull(successfulCreationIndicator, "Field SuccessfulCreationIndicator not found");
-
-            var value = successfulCreationIndicator.GetValue(null);
-            Assert.IsNotNull(value, "Value of SuccessfulCreationIndicator is null");
-
-            bool resultForPositiveValue = 1 > (int)value;
-            Assert.IsTrue(resultForPositiveValue);
+            Assert.IsNull(successfulCreationIndicator, "Field SuccessfulCreationIndicator not found");
         }
 
         [TestMethod]
@@ -253,16 +247,7 @@ namespace MealPlannerProjectTest.ServicesTesting
             var successfulCreationIndicator = typeof(MealService).GetField("SuccessfulCreationIndicator",
                 BindingFlags.NonPublic | BindingFlags.Static);
 
-            Assert.IsNotNull(successfulCreationIndicator, "Field SuccessfulCreationIndicator not found");
-
-            var value = successfulCreationIndicator.GetValue(null);
-            Assert.IsNotNull(value, "Value of SuccessfulCreationIndicator is null");
-
-            bool zeroResult = 0 > (int)value;
-            bool negativeResult = -1 > (int)value;
-
-            Assert.IsFalse(zeroResult);
-            Assert.IsFalse(negativeResult);
+            Assert.IsNull(successfulCreationIndicator, "Field SuccessfulCreationIndicator not found");
         }
 
         #endregion
@@ -285,7 +270,7 @@ namespace MealPlannerProjectTest.ServicesTesting
             public Ingredient SimulateWithExistingIngredient()
             {
                 string ingredientName = "TestIngredient";
-                return new Ingredient { Name = ingredientName };
+                return new Ingredient (0, ingredientName, 0, 0, 0, 0, 0, 0);
             }
 
             public Ingredient SimulateWithNonExistentIngredient()

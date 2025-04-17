@@ -6,6 +6,7 @@ using Xunit;
 using MealPlannerProject.Interfaces;
 using MealPlannerProject.Repositories;
 using System.Threading.Tasks;
+using MealPlannerProject.Models;
 
 namespace MealPlannerProjectTest.RepositoryTesting
 {
@@ -65,7 +66,7 @@ namespace MealPlannerProjectTest.RepositoryTesting
             var ingredient = await _ingredientRepository.GetIngredientByNameAsync(ingredientName);
 
             // Assert
-            Xunit.Assert.Null(ingredient);
+            Xunit.Assert.Equal(ingredient, Ingredient.NoIngredient);
         }
     }
 }
