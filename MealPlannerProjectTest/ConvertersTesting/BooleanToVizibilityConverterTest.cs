@@ -7,7 +7,7 @@
     [TestClass]
     public class BooleanToVisibilityConverterTests
     {
-        private BooleanToVisibilityConverter _converter;
+        private BooleanToVisibilityConverter? _converter;
 
         [TestInitialize]
         public void Setup()

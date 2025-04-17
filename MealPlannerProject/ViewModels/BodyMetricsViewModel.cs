@@ -22,6 +22,9 @@
         public BodyMetricsViewModel()
             : this(new BodyMetricService())
         {
+            // Initialize _bodyMetricService with the IDataLink dependency
+            _bodyMetricService = new BodyMetricService(DataLink.Instance);
+            SubmitBodyMetricsCommand = new RelayCommand(GoNext);
         }
 
         public string Weight

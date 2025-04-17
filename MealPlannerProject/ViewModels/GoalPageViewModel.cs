@@ -36,6 +36,7 @@
 
         public ICommand NextCommand { get; }
 
+        [System.Obsolete]
         public GoalPageViewModel()
         {
             this.BackCommand = new RelayCommand(this.GoBack);

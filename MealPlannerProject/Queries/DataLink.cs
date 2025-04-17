@@ -1,12 +1,12 @@
 ﻿namespace MealPlannerProject.Queries
 {
+    using MealPlannerProject.Exceptions;
+    using MealPlannerProject.Interfaces;
+    using Microsoft.Extensions.Configuration;
     using System;
     using System.Data;
     using System.Data.SqlClient;
     using System.Threading.Tasks;
-    using MealPlannerProject.Exceptions;
-    using MealPlannerProject.Interfaces;
-    using Microsoft.Extensions.Configuration;
 
     public sealed partial class DataLink : IDisposable, IDataLink
     {

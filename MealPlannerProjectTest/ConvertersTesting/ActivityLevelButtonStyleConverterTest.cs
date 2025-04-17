@@ -9,7 +9,7 @@ namespace MealPlannerProjectTest.ConvertersTesting
     [TestClass]
     public class ActivityLevelButtonStyleConverterTests
     {
-        private ActivityLevelButtonStyleConverter _converter;
+        private ActivityLevelButtonStyleConverter? _converter;
 
         [TestInitialize]
         public void Setup()
@@ -49,7 +49,6 @@ namespace MealPlannerProjectTest.ConvertersTesting
             // Compare TargetType instead of the whole Style object
             //Assert.AreEqual(expectedStyle.TargetType, ((Style)result).TargetType);
         }
-
 
         [TestMethod]
         public void Convert_ShouldReturnNull_WhenValueIsUnknown()

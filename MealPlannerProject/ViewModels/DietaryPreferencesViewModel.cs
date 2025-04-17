@@ -108,9 +108,14 @@ namespace MealPlannerProject.ViewModels
             }
         }
 
+
+
+
+
         public void SetUserInfo(string firstName, string lastName)
+
         {
-            this.FirstName = firstName;
+}
             this.LastName = lastName;
         }
     }

@@ -7,7 +7,10 @@ namespace MealPlannerProject.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return value != null && value.Equals(parameter) ? 0.5 : 1.0;
+            if (value == null || parameter == null)
+                return 1.0;
+
+            return value.Equals(parameter) ? 0.5 : 1.0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

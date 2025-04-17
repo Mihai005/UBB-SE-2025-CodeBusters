@@ -16,26 +16,26 @@ using System.Diagnostics;
 using MealPlannerProject.ViewModels;
 using Microsoft.UI.Xaml.Automation.Peers;
 
-namespace MealPlannerProject.Pages
-{
     public sealed partial class DietaryPreferencesPage : Page
     {
 
-        DietaryPreferencesViewModel dietaryPreferencesViewModel = new DietaryPreferencesViewModel();
+        private readonly DietaryPreferencesViewModel dietaryPreferencesViewModel;
 
         public DietaryPreferencesPage()
         {
             this.InitializeComponent();
+            dietaryPreferencesViewModel = new DietaryPreferencesViewModel();
             this.DataContext = dietaryPreferencesViewModel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
             if (e.Parameter is CookingLevelViewModel cookingLevelViewModel)
             {
                 Debug.WriteLine($"Dietary Preferences page received user: {cookingLevelViewModel.FirstName} {cookingLevelViewModel.LastName}");
-                ((DietaryPreferencesViewModel)this.DataContext).SetUserInfo(cookingLevelViewModel.FirstName, cookingLevelViewModel.LastName);
+                dietaryPreferencesViewModel.SetUserInfo(cookingLevelViewModel.FirstName, cookingLevelViewModel.LastName);
             }
         }
 

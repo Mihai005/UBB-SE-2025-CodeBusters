@@ -22,6 +22,7 @@
             this.dataLink = DataLink.Instance;
         }
 
+        [Obsolete]
         public void AddUserIfNotExists(int userId)
         {
             // if the current user not in the water_tracker table, add it
