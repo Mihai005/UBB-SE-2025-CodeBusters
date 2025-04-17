@@ -4,6 +4,7 @@
     using System.Data.SqlClient;
     using MealPlannerProject.Interfaces;
     using MealPlannerProject.Interfaces.Services;
+    using MealPlannerProject.Queries;
 
     /// <summary>
     /// Service for managing body metrics of users.
@@ -18,6 +19,11 @@
         public BodyMetricService(IDataLink ddataLink)
         {
             this.dataLink = ddataLink;
+        }
+
+        public BodyMetricService()
+        {
+            this.dataLink = DataLink.Instance;
         }
 
         /// <summary>

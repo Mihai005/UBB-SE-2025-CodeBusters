@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using Moq;
 using System.Reflection;
 
-namespace MealPlannerProjectTest.Services
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
     public class UserPageServiceTests

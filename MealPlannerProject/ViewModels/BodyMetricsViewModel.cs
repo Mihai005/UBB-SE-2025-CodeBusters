@@ -5,6 +5,7 @@
     using System.Windows.Input;
     using MealPlannerProject.Interfaces.Services;
     using MealPlannerProject.Pages;
+    using MealPlannerProject.Queries;
     using MealPlannerProject.Services;
 
     public class BodyMetricsViewModel : ViewModelBase
@@ -23,7 +24,7 @@
             : this(new BodyMetricService())
         {
             // Initialize _bodyMetricService with the IDataLink dependency
-            _bodyMetricService = new BodyMetricService(DataLink.Instance);
+            bodyMetricService = new BodyMetricService(DataLink.Instance);
             SubmitBodyMetricsCommand = new RelayCommand(GoNext);
         }
 

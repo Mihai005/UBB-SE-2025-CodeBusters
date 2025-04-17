@@ -1,12 +1,12 @@
-﻿using MealPlannerProject.Interfaces.Services;
-using MealPlannerProject.Pages;
-using MealPlannerProject.Services;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Input;
-
-namespace MealPlannerProject.ViewModels
+﻿namespace MealPlannerProject.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Windows.Input;
+    using MealPlannerProject.Interfaces.Services;
+    using MealPlannerProject.Pages;
+    using MealPlannerProject.Services;
+
     public class DietaryPreferencesViewModel : INotifyPropertyChanged
     {
         public ICommand BackCommand { get; set; }
@@ -108,14 +108,8 @@ namespace MealPlannerProject.ViewModels
             }
         }
 
-
-
-
-
         public void SetUserInfo(string firstName, string lastName)
-
         {
-}
             this.LastName = lastName;
         }
     }

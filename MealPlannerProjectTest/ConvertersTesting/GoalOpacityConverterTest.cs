@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MealPlannerProject.Converters;
 using System;
 
-namespace MealPlannerProjectTest.Converters
+namespace MealPlannerProjectTest.ConvertersTesting
 {
     [TestClass]
     public class GoalOpacityConverterTests

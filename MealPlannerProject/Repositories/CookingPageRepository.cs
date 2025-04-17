@@ -20,6 +20,11 @@
             this.dataLink = DataLink.Instance;
         }
 
+        public CookingPageRepository(IDataLink dataLink)
+        {
+            this.dataLink = dataLink;
+        }
+
         [Obsolete]
         public int GetUserIdByName(string firstName, string lastName)
         {
