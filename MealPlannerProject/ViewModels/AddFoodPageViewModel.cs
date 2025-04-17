@@ -19,27 +19,28 @@
         private bool isSearchVisible;
         private string selectedUnit = "g";
         private string connectionString;
+
         public ObservableCollection<object> SearchResults { get; set; } = new ObservableCollection<object>();
 
-        private string totalPr;
-        private string goalPr;
-        private string leftPr;
+        private string totalProtein;
+        private string goalProtein;
+        private string remainingProtein;
 
-        private string totalCarb;
-        private string goalCarb;
-        private string leftCarb;
+        private string totalCarbohydrates;
+        private string goalCarbohydrates;
+        private string remainingCarbohydrates;
 
-        private string totalFib;
-        private string goalFib;
-        private string leftFib;
+        private string totalFiber;
+        private string goalFiber;
+        private string remainingFiber;
 
         private string totalFat;
         private string goalFat;
-        private string leftFat;
+        private string remainingFat;
 
-        private string totalSug;
-        private string goalSug;
-        private string leftSug;
+        private string totalSugar;
+        private string goalSugar;
+        private string remainingSugar;
 
         private void SetProperty(ref string field, string value, [System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
@@ -50,54 +51,39 @@
             }
         }
 
-        public string TotalPr
-        {
-            get => this.totalPr;
-            set => this.SetProperty(ref this.totalPr, value);
-        }
+        public string TotalProtein { get => this.totalProtein; set => this.SetProperty(ref this.totalProtein, value); }
 
-        public string GoalPr
-        {
-            get => this.goalPr;
-            set => this.SetProperty(ref this.goalPr, value);
-        }
+        public string GoalProtein { get => this.goalProtein; set => this.SetProperty(ref this.goalProtein, value); }
 
-        public string LeftPr
-        {
-            get => this.leftPr;
-            set => this.SetProperty(ref this.leftPr, value);
-        }
+        public string RemainingProtein { get => this.remainingProtein; set => this.SetProperty(ref this.remainingProtein, value); }
 
-        public string TotalCarb { get => this.totalCarb; set => this.SetProperty(ref this.totalCarb, value); }
+        public string TotalCarbohydrates { get => this.totalCarbohydrates; set => this.SetProperty(ref this.totalCarbohydrates, value); }
 
-        public string GoalCarb { get => this.goalCarb; set => this.SetProperty(ref this.goalCarb, value); }
+        public string GoalCarbohydrates { get => this.goalCarbohydrates; set => this.SetProperty(ref this.goalCarbohydrates, value); }
 
-        public string LeftCarb { get => this.leftCarb; set => this.SetProperty(ref this.leftCarb, value); }
+        public string RemainingCarbohydrates { get => this.remainingCarbohydrates; set => this.SetProperty(ref this.remainingCarbohydrates, value); }
 
-        public string TotalFib { get => this.totalFib; set => this.SetProperty(ref this.totalFib, value); }
+        public string TotalFiber { get => this.totalFiber; set => this.SetProperty(ref this.totalFiber, value); }
 
-        public string GoalFib { get => this.goalFib; set => this.SetProperty(ref this.goalFib, value); }
+        public string GoalFiber { get => this.goalFiber; set => this.SetProperty(ref this.goalFiber, value); }
 
-        public string LeftFib { get => this.leftFib; set => this.SetProperty(ref this.leftFib, value); }
+        public string RemainingFiber { get => this.remainingFiber; set => this.SetProperty(ref this.remainingFiber, value); }
 
         public string TotalFat { get => this.totalFat; set => this.SetProperty(ref this.totalFat, value); }
 
         public string GoalFat { get => this.goalFat; set => this.SetProperty(ref this.goalFat, value); }
 
-        public string LeftFat { get => this.leftFat; set => this.SetProperty(ref this.leftFat, value); }
+        public string RemainingFat { get => this.remainingFat; set => this.SetProperty(ref this.remainingFat, value); }
 
-        public string TotalSug { get => this.totalSug; set => this.SetProperty(ref this.totalSug, value); }
+        public string TotalSugar { get => this.totalSugar; set => this.SetProperty(ref this.totalSugar, value); }
 
-        public string GoalSug { get => this.goalSug; set => this.SetProperty(ref this.goalSug, value); }
+        public string GoalSugar { get => this.goalSugar; set => this.SetProperty(ref this.goalSugar, value); }
 
-        public string LeftSug { get => this.leftSug; set => this.SetProperty(ref this.leftSug, value); }
+        public string RemainingSugar { get => this.remainingSugar; set => this.SetProperty(ref this.remainingSugar, value); }
 
-        private static int _userId;
-        public static int UserId
-        {
-            get => _userId;
-            set => _userId = value;
-        }
+        private static int userId;
+
+        public static int UserId { get => userId; set => userId = value; }
 
         private readonly MacrosService macrosService;
 
@@ -119,29 +105,29 @@
             Console.WriteLine("AddFoodPageViewModel initialized");
             Console.WriteLine($"AddToMealCommand is null: {this.AddToMealCommand == null}");
 
-            int number_userId = _userId;
+            int number_userId = userId;
 
             // Initialize MacrosService
             this.macrosService = new MacrosService();
             // Initialize macros values from database
-            this.TotalPr = this.macrosService.GetProteinIntake(number_userId).ToString();
-            this.TotalCarb = this.macrosService.GetCarbohydratesIntake(number_userId).ToString();
+            this.TotalProtein = this.macrosService.GetProteinIntake(number_userId).ToString();
+            this.TotalCarbohydrates = this.macrosService.GetCarbohydratesIntake(number_userId).ToString();
             this.TotalFat = this.macrosService.GetFatIntake(number_userId).ToString();
-            this.TotalFib = this.macrosService.GetFiberIntake(number_userId).ToString();
-            this.TotalSug = this.macrosService.GetSugarIntake(number_userId).ToString();
+            this.TotalFiber = this.macrosService.GetFiberIntake(number_userId).ToString();
+            this.TotalSugar = this.macrosService.GetSugarIntake(number_userId).ToString();
 
             // Initialize values
-            this.GoalPr = "30";
-            this.GoalCarb = "200";
-            this.GoalFib = "30";
+            this.GoalProtein = "30";
+            this.GoalCarbohydrates = "200";
+            this.GoalFiber = "30";
             this.GoalFat = "90";
-            this.GoalSug = "50";
+            this.GoalSugar = "50";
 
-            this.LeftPr = (float.Parse(this.GoalPr) - float.Parse(this.TotalPr)).ToString();
-            this.LeftCarb = (float.Parse(this.GoalCarb) - float.Parse(this.TotalCarb)).ToString();
-            this.LeftFib = (float.Parse(this.GoalFib) - float.Parse(this.TotalFib)).ToString();
-            this.LeftFat = (float.Parse(this.GoalFat) - float.Parse(this.TotalFat)).ToString();
-            this.LeftSug = (float.Parse(this.GoalSug) - float.Parse(this.TotalSug)).ToString();
+            this.RemainingProtein = (float.Parse(this.GoalProtein) - float.Parse(this.TotalProtein)).ToString();
+            this.RemainingCarbohydrates = (float.Parse(this.GoalCarbohydrates) - float.Parse(this.TotalCarbohydrates)).ToString();
+            this.RemainingFiber = (float.Parse(this.GoalFiber) - float.Parse(this.TotalFiber)).ToString();
+            this.RemainingFat = (float.Parse(this.GoalFat) - float.Parse(this.TotalFat)).ToString();
+            this.RemainingSugar = (float.Parse(this.GoalSugar) - float.Parse(this.TotalSugar)).ToString();
         }
 
         public ICommand NextCommand { get; }

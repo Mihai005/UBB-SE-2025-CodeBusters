@@ -5,6 +5,8 @@ using System;
 using System.Diagnostics;
 using MealPlannerProject.Pages;
 using MealPlannerProject.Interfaces.Services;
+using MealPlannerProject.Interfaces;
+using MealPlannerProject.Queries;
 
 namespace MealPlannerProject.ViewModels
 {
@@ -20,8 +22,11 @@ namespace MealPlannerProject.ViewModels
         private string firstName = string.Empty;
         private string lastName = string.Empty;
 
-        public BodyMetricsViewModel() : this(new BodyMetricService())
+        public BodyMetricsViewModel()
         {
+            // Initialize _bodyMetricService with the IDataLink dependency
+            _bodyMetricService = new BodyMetricService(DataLink.Instance);
+            SubmitBodyMetricsCommand = new RelayCommand(GoNext);
         }
 
         public string Weight

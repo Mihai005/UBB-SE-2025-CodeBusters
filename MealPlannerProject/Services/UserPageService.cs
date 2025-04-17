@@ -1,45 +1,47 @@
 ﻿using MealPlannerProject.Queries;
-using System;
-using System.Collections.Generic;
+using MealPlannerProject.Interfaces;
+
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Networking;
 
 namespace MealPlannerProject.Services
 {
-    class UserPageService
-    {
-        public int userHasAnAccount(string name)
+    public class UserPageService : IUserPageService
+    {   
+        private readonly IDataLink _dataLink;
+
+        public UserPageService()
+        {
+            _dataLink = DataLink.Instance;
+        }
+
+        public UserPageService(IDataLink dataLink)
+        {
+            _dataLink = dataLink;
+        }
+
+        public int UserHasAnAccount(string name)
         {
             var parameters = new SqlParameter[]
             {
                 new SqlParameter("@u_name", name)
             };
 
-            int? userId = DataLink.Instance.ExecuteScalar<int>("SELECT dbo.GetUserByName(@u_name)", parameters, false);
-            if (userId.HasValue && userId.Value > 0)
-            {
-                return userId.Value;
-            }
-            else
-            {
-                return -1;
-            }
+            int? userId = _dataLink.ExecuteScalar<int>("SELECT dbo.GetUserByName(@u_name)", parameters, false);
+
+            return userId.HasValue && userId.Value > 0 ? userId.Value : -1;
         }
 
-        public int insertNewUser(string name)
+        public int InsertNewUser(string name)
         {
             var parameters = new SqlParameter[]
             {
                 new SqlParameter("@u_name", name),
-                new SqlParameter("@id", SqlDbType.Int) {Direction = System.Data.ParameterDirection.Output},
+                new SqlParameter("@id", SqlDbType.Int) { Direction = ParameterDirection.Output }
             };
-            DataLink.Instance.ExecuteNonQuery("InsertNewUser", parameters);
-            return (int) parameters[1].Value;
+
+            _dataLink.ExecuteNonQuery("InsertNewUser", parameters);
+            return (int)parameters[1].Value;
         }
     }
 }

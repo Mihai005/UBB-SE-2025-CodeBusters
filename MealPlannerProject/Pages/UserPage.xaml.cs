@@ -1,23 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using MealPlannerProject.Services;
-using MealPlannerProject.Pages;
-using MealPlannerProject.ViewModels;
-
 namespace MealPlannerProject.Pages
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.InteropServices.WindowsRuntime;
+    using MealPlannerProject.Pages;
+    using MealPlannerProject.Services;
+    using MealPlannerProject.ViewModels;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Controls.Primitives;
+    using Microsoft.UI.Xaml.Data;
+    using Microsoft.UI.Xaml.Input;
+    using Microsoft.UI.Xaml.Media;
+    using Microsoft.UI.Xaml.Navigation;
+    using Windows.Foundation;
+    using Windows.Foundation.Collections;
+
     public sealed partial class UserPage : Page
     {
         public string FirstName { get; set; } = string.Empty;
@@ -33,27 +33,27 @@ namespace MealPlannerProject.Pages
 
         public string GetUserFullName()
         {
-            return $"{LastName} {FirstName}";
+            return $"{this.LastName} {this.FirstName}";
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            FirstName = FirstNameTextBox.Text.Trim();
-            LastName = LastNameTextBox.Text.Trim();
+            this.FirstName = this.FirstNameTextBox.Text.Trim();
+            this.LastName = this.LastNameTextBox.Text.Trim();
 
-            if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName))
+            if (string.IsNullOrEmpty(this.FirstName) || string.IsNullOrEmpty(this.LastName))
             {
                 var dialog = new ContentDialog
                 {
                     Title = "Error",
                     Content = "Please enter both your first and last name.",
                     CloseButtonText = "OK",
-                    XamlRoot = this.XamlRoot
+                    XamlRoot = this.XamlRoot,
                 };
-                dialog.ShowAsync();
+                _ = dialog.ShowAsync();
                 return;
             }
-            int userId = this.userPageService.userHasAnAccount(this.LastName + " " + this.FirstName);
+            int userId = this.userPageService.UserHasAnAccount(this.LastName + " " + this.FirstName);
             if (userId != -1)
             {
                 GroceryViewModel.UserId = userId;
@@ -63,7 +63,7 @@ namespace MealPlannerProject.Pages
             }
             else
             {
-                userId = userPageService.insertNewUser(LastName + " " + FirstName);
+                userId = userPageService.InsertNewUser(this.LastName + " " + this.FirstName);
                 GroceryViewModel.UserId = userId;
                 AddFoodPageViewModel.UserId = userId;
                 MainViewModel.UserId = userId;

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿// Refactored DietaryPreferencesViewModel.cs
+using CommunityToolkit.Mvvm.Input;
 using MealPlannerProject.Interfaces.Services;
 using MealPlannerProject.Pages;
 using MealPlannerProject.Queries;
@@ -11,10 +12,10 @@ namespace MealPlannerProject.ViewModels
 {
     public class DietaryPreferencesViewModel : INotifyPropertyChanged
     {
+        private readonly IDietaryPreferencesService _dietaryPreferencesService = new DietaryPreferencesService(DataLink.Instance);
+
         public ICommand BackCommand { get; set; }
         public ICommand NextCommand { get; set; }
-
-        private IDietaryPreferencesService _dietaryPreferencesService = new DietaryPreferencesService(DataLink.Instance);
         
         public ObservableCollection<string> OtherDietOptions { get; set; }
         public ObservableCollection<string> AllergenOptions { get; set; }
@@ -47,6 +48,28 @@ namespace MealPlannerProject.ViewModels
             }
         }
 
+        private string _firstName;
+        public string FirstName
+        {
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged(nameof(FirstName));
+            }
+        }
+
+        private string _lastName;
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged(nameof(LastName));
+            }
+        }
+
         public DietaryPreferencesViewModel()
         {
             BackCommand = new RelayCommand(BackAction);
@@ -54,14 +77,14 @@ namespace MealPlannerProject.ViewModels
 
             // Populate options
             OtherDietOptions = new ObservableCollection<string>
-        {
-            "None", "Mediterranean", "Low-Fat", "Diabetic-Friendly", "Kosher", "Halal"
-        };
+            {
+                "None", "Mediterranean", "Low-Fat", "Diabetic-Friendly", "Kosher", "Halal"
+            };
 
             AllergenOptions = new ObservableCollection<string>
-        {
-            "None", "Peanuts", "Tree Nuts", "Dairy", "Eggs", "Gluten", "Shellfish", "Soy", "Fish", "Sesame"
-        };
+            {
+                "None", "Peanuts", "Tree Nuts", "Dairy", "Eggs", "Gluten", "Shellfish", "Soy", "Fish", "Sesame"
+            };
         }
 
         private void BackAction()
@@ -81,36 +104,10 @@ namespace MealPlannerProject.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string firstName;
-        private string lastName;
-
-        public string FirstName
-        {
-            get => firstName;
-            set
-            {
-                firstName = value;
-                OnPropertyChanged(nameof(FirstName));
-            }
-        }
-
-        public string LastName
-        {
-            get => lastName;
-            set
-            {
-                lastName = value;
-                OnPropertyChanged(nameof(LastName));
-            }
-        }
-
-
-
         public void SetUserInfo(string firstName, string lastName)
         {
             FirstName = firstName;
             LastName = lastName;
         }
-
     }
 }

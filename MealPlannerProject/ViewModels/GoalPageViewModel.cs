@@ -38,6 +38,7 @@
 
         public ICommand NextCommand { get; }
 
+        [System.Obsolete]
         public GoalPageViewModel()
         {
             this.BackCommand = new RelayCommand(this.GoBack);
@@ -86,6 +87,7 @@
             this.LastName = lastName;
         }
 
+        [System.Obsolete]
         private void GoNext()
         {
             this.goalPageService.AddGoals(this.FirstName, this.LastName, this.SelectedGoal);

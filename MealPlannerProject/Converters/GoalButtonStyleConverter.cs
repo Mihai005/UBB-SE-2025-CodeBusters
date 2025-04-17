@@ -1,34 +1,46 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using System;
-
-namespace MealPlannerProject.Converters
+﻿namespace MealPlannerProject.Converters
 {
+    using System;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Data;
+
     public class GoalButtonStyleConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public IResourceProvider? ResourceProvider { get; set; }
+
+        public object? Convert(object value, Type targetType, object parameter, string language)
         {
-            string goal = value as string;
-            switch (goal)
+            string? goal = value as string;
+
+            var resources = this.ResourceProvider ?? new DefaultResourceProvider();
+
+            return goal switch
             {
-                case "Lose weight":
-                    return Application.Current.Resources["LoseWeightButtonStyle"] as Style;
-                case "Gain weight":
-                    return Application.Current.Resources["GainWeightButtonStyle"] as Style;
-                case "Maintain weight":
-                    return Application.Current.Resources["MaintainWeightButtonStyle"] as Style;
-                case "Body recomposition":
-                    return Application.Current.Resources["BodyRecompositionButtonStyle"] as Style;
-                case "Improve overall health":
-                    return Application.Current.Resources["ImproveHealthButtonStyle"] as Style;
-                default:
-                    return null;
-            }
+                "Lose weight" => resources.Get("LoseWeightButtonStyle"),
+                "Gain weight" => resources.Get("GainWeightButtonStyle"),
+                "Maintain weight" => resources.Get("MaintainWeightButtonStyle"),
+                "Body recomposition" => resources.Get("BodyRecompositionButtonStyle"),
+                "Improve overall health" => resources.Get("ImproveHealthButtonStyle"),
+                _ => null
+            };
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    public interface IResourceProvider
+    {
+        object? Get(string key);
+    }
+
+    public class DefaultResourceProvider : IResourceProvider
+    {
+        public object? Get(string key)
+        {
+            return Application.Current.Resources[key];
         }
     }
 }
