@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System;
 using NSubstitute.ExceptionExtensions;
 
-namespace MealPlannerProjectTest
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
     public class CookingPageServiceTests

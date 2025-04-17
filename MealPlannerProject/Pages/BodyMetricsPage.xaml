@@ -115,7 +115,6 @@ Background="#FCE8DC">
                 Width="50" Height="50"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Command="{Binding SubmitBodyMetricsCommand}"
                 Click="NextButton_Click"
                 Background="DarkGreen"
                 Foreground="White"

@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System.Diagnostics;
 using MealPlannerProject.ViewModels;
+using Microsoft.UI.Xaml.Automation.Peers;
 
 namespace MealPlannerProject.Pages
 {
@@ -35,6 +36,25 @@ namespace MealPlannerProject.Pages
             {
                 Debug.WriteLine($"Dietary Preferences page received user: {cookingLevelViewModel.FirstName} {cookingLevelViewModel.LastName}");
                 ((DietaryPreferencesViewModel)this.DataContext).SetUserInfo(cookingLevelViewModel.FirstName, cookingLevelViewModel.LastName);
+            }
+        }
+
+        private async void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.dietaryPreferencesViewModel.NextAction();
+            }
+            catch (Exception ex)
+            {
+                var contentDialog = new ContentDialog()
+                {
+                    Title = "Error",
+                    Content = ex.Message,
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot,
+                };
+                await contentDialog.ShowAsync();
             }
         }
 

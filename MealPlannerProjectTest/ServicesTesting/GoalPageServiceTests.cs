@@ -1,4 +1,4 @@
-﻿namespace MealPlannerProjectTest.ServiceTesting
+﻿namespace MealPlannerProjectTest.ServicesTesting
 {
 
     using MealPlannerProject.Queries;

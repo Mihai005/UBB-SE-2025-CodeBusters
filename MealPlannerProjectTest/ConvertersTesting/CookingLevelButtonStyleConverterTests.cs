@@ -6,7 +6,7 @@ using MealPlannerProject.Converters;
 using Microsoft.UI.Xaml.Data;
 using System.Collections.Generic;
 
-namespace MealPlannerProjectTest.Converters
+namespace MealPlannerProjectTest.ConvertersTesting
 {
     [TestClass]
     public class CookingLevelButtonStyleConverterTests

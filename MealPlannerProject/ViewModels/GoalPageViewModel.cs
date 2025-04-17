@@ -2,12 +2,10 @@
 {
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.Windows.Input;
     using CommunityToolkit.Mvvm.Input;
     using MealPlannerProject.Pages;
     using MealPlannerProject.Services;
-    using Windows.Networking;
 
     internal class GoalPageViewModel
     {
@@ -86,7 +84,7 @@
             this.LastName = lastName;
         }
 
-        private void GoNext()
+        public void GoNext()
         {
             this.goalPageService.AddGoals(this.FirstName, this.LastName, this.SelectedGoal);
             NavigationService.Instance.NavigateTo(typeof(ActivityLevelPage), this);

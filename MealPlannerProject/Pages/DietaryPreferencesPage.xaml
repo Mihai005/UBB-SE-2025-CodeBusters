@@ -74,6 +74,6 @@
                 HorizontalAlignment="Right" VerticalAlignment="Bottom"
                 Background="#133224" Foreground="#FCE8DC"
                 CornerRadius="25" Padding="0, -7, 0, 0"
-                Command="{Binding NextCommand}"/>
+                Click="NextButton_Click"/>
     </Grid>
 </Page>

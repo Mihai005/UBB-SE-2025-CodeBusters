@@ -65,8 +65,7 @@
          Click="NextButton_Click"
          Foreground="#FCE8DC"
          CornerRadius="25"
-             Padding="0, -7, 0, 0"
-         Command="{Binding NextCommand}"/>
+             Padding="0, -7, 0, 0"/>
 
     </Grid>
 </Page>

@@ -14,7 +14,7 @@
         VerticalAlignment="Top"
         Background="Transparent"
         BorderBrush="Transparent"
-        Command="{Binding BackCommand}">
+        Command="{Binding NavigateToPreviousPageCommand}">
             <BitmapIcon UriSource="Assets/arrow_back.png"
            Width="40"
            Height="40"
@@ -65,8 +65,7 @@
          Foreground="#FCE8DC"
          Click="NextButton_Click"
          CornerRadius="25"
-             Padding="0, -7, 0, 0"
-         Command="{Binding NextCommand}"/>
+             Padding="0, -7, 0, 0"/>
 
     </Grid>
 </Page>

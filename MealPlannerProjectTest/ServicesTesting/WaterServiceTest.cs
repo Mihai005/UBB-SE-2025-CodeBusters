@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System.Data.SqlClient;
 
-namespace MealPlannerProjectTest
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
     public class WaterServiceTests

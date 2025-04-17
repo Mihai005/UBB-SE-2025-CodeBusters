@@ -1,34 +1,23 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using System.Diagnostics;
-using MealPlannerProject.Services;
-using MealPlannerProject.ViewModels;
-
 namespace MealPlannerProject.Pages
 {
+    using System;
+    using System.Diagnostics;
+    using MealPlannerProject.ViewModels;
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+    using Microsoft.UI.Xaml.Navigation;
+
     public sealed partial class BodyMetricsPage : Page
     {
-        public BodyMetricsViewModel viewModel;
+        private readonly BodyMetricsViewModel viewModel;
 
         public BodyMetricsPage()
         {
             try
             {
                 this.InitializeComponent();
-                viewModel = new BodyMetricsViewModel();
-                this.DataContext = viewModel;
+                this.viewModel = new BodyMetricsViewModel();
+                this.DataContext = this.viewModel;
                 Debug.WriteLine("BodyMetricsPage initialized successfully.");
             }
             catch (Exception ex)
@@ -43,7 +32,7 @@ namespace MealPlannerProject.Pages
             base.OnNavigatedTo(e);
             if (e.Parameter is UserPage userPage)
             {
-                viewModel.SetUserInfo(userPage.FirstName, userPage.LastName);
+                this.viewModel.SetUserInfo(userPage.FirstName, userPage.LastName);
                 Debug.WriteLine($"Received user name: {userPage.FirstName} {userPage.LastName}");
             }
         }
@@ -52,32 +41,33 @@ namespace MealPlannerProject.Pages
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(WeightTextBox.Text) || string.IsNullOrWhiteSpace(HeightTextBox.Text))
+                if (string.IsNullOrWhiteSpace(this.WeightTextBox.Text) || string.IsNullOrWhiteSpace(this.HeightTextBox.Text))
                 {
-                    ShowErrorDialog("Please enter both your weight and height.");
+                    this.ShowErrorDialog("Please enter both your weight and height.");
                     return;
                 }
 
-                if (!float.TryParse(WeightTextBox.Text, out float weight) || !float.TryParse(HeightTextBox.Text, out float height))
+                if (!float.TryParse(this.WeightTextBox.Text, out float weight) || !float.TryParse(this.HeightTextBox.Text, out float height))
                 {
-                    ShowErrorDialog("Please enter valid numbers for weight and height.");
+                    this.ShowErrorDialog("Please enter valid numbers for weight and height.");
                     return;
                 }
 
                 if (weight <= 0 || height <= 0)
                 {
-                    ShowErrorDialog("Weight and height must be greater than 0.");
+                    this.ShowErrorDialog("Weight and height must be greater than 0.");
                     return;
                 }
 
-                viewModel.Weight = WeightTextBox.Text;
-                viewModel.Height = HeightTextBox.Text;
-                viewModel.TargetWeight = TargetGoalTextBox.Text;
-                Debug.WriteLine($"Navigating to GoalPage with {viewModel.LastName} and {viewModel.FirstName}");
+                this.viewModel.Weight = this.WeightTextBox.Text;
+                this.viewModel.Height = this.HeightTextBox.Text;
+                this.viewModel.TargetWeight = this.TargetGoalTextBox.Text;
+                this.viewModel.GoNext();
+                Debug.WriteLine($"Navigating to GoalPage with {this.viewModel.LastName} and {this.viewModel.FirstName}");
             }
             catch (Exception ex)
             {
-                ShowErrorDialog($"An error occurred: {ex.Message}");
+                this.ShowErrorDialog($"An error occurred: {ex.Message}");
             }
         }
 
@@ -88,7 +78,7 @@ namespace MealPlannerProject.Pages
                 Title = "Error",
                 Content = message,
                 CloseButtonText = "OK",
-                XamlRoot = this.XamlRoot
+                XamlRoot = this.XamlRoot,
             };
             await dialog.ShowAsync();
         }

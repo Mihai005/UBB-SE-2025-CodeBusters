@@ -6,7 +6,7 @@ using System.Reflection;
 using MealPlannerProject.Models;
 using System.Collections.Generic;
 
-namespace MealPlannerProjectTest.Services
+namespace MealPlannerProjectTest.ServicesTesting
 {
     [TestClass]
     public class GroceryListServiceTests

@@ -7,7 +7,7 @@ using MealPlannerProject.Interfaces;
 using MealPlannerProject.Repositories;
 using System.Threading.Tasks;
 
-namespace MealPlannerProject.Tests
+namespace MealPlannerProjectTest.RepositoryTesting
 {
     [TestClass]
     public class IngredientRepositoryTests

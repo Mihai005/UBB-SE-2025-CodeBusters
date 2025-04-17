@@ -1,16 +1,15 @@
-﻿using MealPlannerProject.Services;
-using System.Windows.Input;
-using Microsoft.UI.Xaml.Controls;
-using System;
-using System.Diagnostics;
-using MealPlannerProject.Pages;
-using MealPlannerProject.Interfaces.Services;
-
-namespace MealPlannerProject.ViewModels
+﻿namespace MealPlannerProject.ViewModels
 {
+    using System;
+    using System.Diagnostics;
+    using System.Windows.Input;
+    using MealPlannerProject.Interfaces.Services;
+    using MealPlannerProject.Pages;
+    using MealPlannerProject.Services;
+
     public class BodyMetricsViewModel : ViewModelBase
     {
-        private readonly IBodyMetricService _bodyMetricService;
+        private readonly IBodyMetricService bodyMetricService;
 
         public ICommand SubmitBodyMetricsCommand { get; }
 
@@ -20,77 +19,78 @@ namespace MealPlannerProject.ViewModels
         private string firstName = string.Empty;
         private string lastName = string.Empty;
 
-        public BodyMetricsViewModel() : this(new BodyMetricService())
+        public BodyMetricsViewModel()
+            : this(new BodyMetricService())
         {
         }
 
         public string Weight
         {
-            get => weight;
+            get => this.weight;
             set
             {
-                weight = value;
-                OnPropertyChanged(nameof(Weight));
+                this.weight = value;
+                this.OnPropertyChanged(nameof(this.Weight));
             }
         }
 
         public string Height
         {
-            get => height;
+            get => this.height;
             set
             {
-                height = value;
-                OnPropertyChanged(nameof(Height));
+                this.height = value;
+                this.OnPropertyChanged(nameof(this.Height));
             }
         }
 
         public string TargetWeight
         {
-            get => targetWeight;
+            get => this.targetWeight;
             set
             {
-                targetWeight = value;
-                OnPropertyChanged(nameof(TargetWeight));
+                this.targetWeight = value;
+                this.OnPropertyChanged(nameof(this.TargetWeight));
             }
         }
 
         public string FirstName
         {
-            get => firstName;
+            get => this.firstName;
             set
             {
-                firstName = value;
-                OnPropertyChanged(nameof(FirstName));
+                this.firstName = value;
+                this.OnPropertyChanged(nameof(this.FirstName));
             }
         }
 
         public string LastName
         {
-            get => lastName;
+            get => this.lastName;
             set
             {
-                lastName = value;
-                OnPropertyChanged(nameof(LastName));
+                this.lastName = value;
+                this.OnPropertyChanged(nameof(this.LastName));
             }
         }
 
         public BodyMetricsViewModel(IBodyMetricService bodyMetricService)
         {
-            _bodyMetricService = bodyMetricService ?? throw new ArgumentNullException(nameof(bodyMetricService));
-            SubmitBodyMetricsCommand = new RelayCommand(GoNext);
+            this.bodyMetricService = bodyMetricService ?? throw new ArgumentNullException(nameof(bodyMetricService));
+            this.SubmitBodyMetricsCommand = new RelayCommand(this.GoNext);
         }
 
         public void SetUserInfo(string firstName, string lastName)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
-        private void GoNext()
+        public void GoNext()
         {
             try
             {
-                this._bodyMetricService.UpdateUserBodyMetrics(this.FirstName, this.LastName, this.Weight, this.Height, this.TargetWeight);
+                this.bodyMetricService.UpdateUserBodyMetrics(this.FirstName, this.LastName, this.Weight, this.Height, this.TargetWeight);
                 NavigationService.Instance.NavigateTo(typeof(GoalPage), this);
             }
             catch (Exception ex)

@@ -80,20 +80,19 @@
             this.LastName = lastName;
         }
 
-        private void NavigateToPreviousPage()
-        {
-            NavigationService.Instance.GoBack();
-        }
-
-        private void NavigateToNextPage()
+        public void NavigateToNextPage()
         {
             this.cookingPageService.AddCookingSkill(
                 this.FirstName,
                 this.LastName,
                 this.SelectedCookingSkill);
 
-            //NavigationService.Instance.NavigateTo(typeof(YoureAllSetPage), this);
             NavigationService.Instance.NavigateTo(typeof(DietaryPreferencesPage), this);
+        }
+
+        private void NavigateToPreviousPage()
+        {
+            NavigationService.Instance.GoBack();
         }
 
         // Override base class event to provide our own implementation
