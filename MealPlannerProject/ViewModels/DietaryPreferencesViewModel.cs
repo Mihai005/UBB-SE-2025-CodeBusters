@@ -4,6 +4,7 @@
     using System.ComponentModel;
     using System.Windows.Input;
     using MealPlannerProject.Interfaces.Services;
+    using MealPlannerProject.Models;
     using MealPlannerProject.Pages;
     using MealPlannerProject.Services;
 
@@ -19,7 +20,7 @@
 
         public ObservableCollection<string> AllergenOptions { get; set; }
 
-        private string otherDiet;
+        private string otherDiet = DietaryPreferenceType.NotSelected.ToString();
 
         public string OtherDiet
         {
@@ -34,7 +35,7 @@
             }
         }
 
-        private string allergens;
+        private string allergens = DietaryPreferenceType.NotSelected.ToString();
 
         public string Allergens
         {
@@ -111,6 +112,7 @@
         public void SetUserInfo(string firstName, string lastName)
         {
             this.LastName = lastName;
+            this.FirstName = firstName;
         }
     }
 }
