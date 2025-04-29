@@ -27,7 +27,7 @@
 
         </StackPanel>
 
-        <Button Content="Social Media -> Only Fans -> Footjob" FontSize="16"
+        <Button Content="Social Media" FontSize="16"
         HorizontalAlignment="Right"
         VerticalAlignment="Top"
         BorderThickness="0"
@@ -45,7 +45,7 @@
             BorderThickness="0"
             CornerRadius="17"
             Padding="20,3,20,6"
-            Margin="0,30,100,0"
+            Margin="0,30,250,0"
             Background="#C76E4E"
             Foreground="white"
             Command="{Binding DisplayMeals}"
@@ -57,7 +57,7 @@
             BorderThickness="0"
             CornerRadius="17"
             Padding="20,3,20,6"
-            Margin="0,30,250,0"
+            Margin="0,30,400,0"
             Background="#C76E4E"
             Foreground="white"
             Command="{Binding CreateMeal}"
@@ -69,7 +69,7 @@
             BorderThickness="0"
             CornerRadius="17"
             Padding="20,3,20,6"
-            Margin="0,30,390,0"
+            Margin="0,30,550,0"
             Background="#C76E4E"
             Foreground="white"
             Command="{Binding GroceryList}"
