@@ -171,6 +171,9 @@ namespace MealPlannerProject.ViewModels
         }
 
         // Commands -------------------------------------
+
+        public ICommand SocialMedia { get; }
+
         public ICommand RefreshCircleTextCommand { get; }
 
         public ICommand RefreshBaseGoalTextCommand { get; }

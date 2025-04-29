@@ -27,6 +27,18 @@
 
         </StackPanel>
 
+        <Button Content="Social Media -> Only Fans -> Footjob" FontSize="16"
+        HorizontalAlignment="Right"
+        VerticalAlignment="Top"
+        BorderThickness="0"
+        CornerRadius="17"
+        Padding="20,3,20,6"
+        Margin="0,30,100,0"
+        Background="#C76E4E"
+        Foreground="white"
+        Command="{Binding SocialMedia}"
+/>
+
         <Button Content="Display Meals" FontSize="16"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
